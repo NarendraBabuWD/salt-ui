@@ -18,13 +18,13 @@
          <tbody>
             <tr class="trRow" *ngFor="let referral of pendingReferralsArray; index as i">
                 <td>{{ i + 1 }}</td>
-                    <td>{{ referral.patientName }}</td>
-                    <td>{{ referral.alliedHealthName }}</td>
-                    <td>{{ referral.lastModifiedOn }}</td>  
+                    <td>{{ referral.patient_name }}</td>
+                    <td>{{ referral.provider_name }}</td>
+                    <td>{{ referral.Date }}</td>  
                     <td>
                         <button  class="btn btn-primary btn-sm ml-3">View</button>
-                        <button  class="btn btn-success btn-sm ml-3">Send</button>
-                        <button  class="btn btn-danger btn-sm ml-3" >Delete</button>
+                        <button  class="btn btn-success btn-sm ml-3" (click)="sendRef(referral)">Send</button>
+                        <button  class="btn btn-danger btn-sm ml-3" (click)="deleteRef(referral)">Delete</button>
                     </td>
             </tr>
   </tbody>  
