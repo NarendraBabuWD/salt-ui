@@ -90,12 +90,29 @@ export class ViewRoleComponent implements OnInit {
     //var index = this.orgTypes.find((i: any) => i.name == event.data.orgTypeId);
     //this.enums.orgTypeId = index.id;
    // this.router.navigate(['/pages/roles/add'], { queryParams: { id: event.data.roleId, orgTypeId:index.id } });
-   this.router.navigate(['/pages/roles/add'], { queryParams: { id: this.roleId} });
+  //  this.router.navigate(['/pages/roles/add'], { queryParams: { id: this.roleId} });
+  
+    
+    if(sessionStorage.getItem("organizationTypeId") === '1'){
+      this.router.navigate(['/owner/roles/add'], { queryParams: { id: this.roleId} });
+      } else if(sessionStorage.getItem("organizationTypeId") === '2'){
+        this.router.navigate(['/practice/roles/add'], { queryParams: { id: this.roleId} });
+      }else if(sessionStorage.getItem("organizationTypeId") === '3'){
+        this.router.navigate(['/allied/roles/add'], { queryParams: { id: this.roleId} });
+      }
+
 
   }
 
   cancel() {
-    this.router.navigate(['/pages/roles/all']);
+    // this.router.navigate(['/pages/roles/all']);
+    if(sessionStorage.getItem("organizationTypeId") === '1'){
+      this.router.navigate(['/owner/roles/all']);
+      } else if(sessionStorage.getItem("organizationTypeId") === '2'){
+        this.router.navigate(['/practice/roles/all']);
+      }else if(sessionStorage.getItem("organizationTypeId") === '3'){
+        this.router.navigate(['/allied/roles/all']);
+      }
   }
 
 }

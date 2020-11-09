@@ -288,7 +288,14 @@ export class AddRoleComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/pages/roles/all']);
+    // this.router.navigate(['/pages/roles/all']);
+    if(sessionStorage.getItem("organizationTypeId") === '1'){
+      this.router.navigate(['/owner/roles/all']);
+      } else if(sessionStorage.getItem("organizationTypeId") === '2'){
+        this.router.navigate(['/practice/roles/all']);
+      }else if(sessionStorage.getItem("organizationTypeId") === '3'){
+        this.router.navigate(['/allied/roles/all']);
+      }
   }
 
 }

@@ -161,7 +161,8 @@ export class AddStaffComponent implements OnInit, OnDestroy {
             //this.setDetails(response);
             this.loading = false;
             this.toastr.success('Staff Saved successfully');
-            this.router.navigate(['/pages/staff/all']);
+            // this.router.navigate(['/pages/staff/all']);
+            this.cancel();
           },
           (error) => {
             this.loading = false;
@@ -177,7 +178,8 @@ export class AddStaffComponent implements OnInit, OnDestroy {
             //this.setDetails(response);
             this.loading = false;
             this.toastr.success('Staff Updated successfully');
-            this.router.navigate(['/pages/staff/all']);
+            // this.router.navigate(['/pages/staff/all']);
+            this.cancel();
           },
           (error) => {
             this.loading = false;
@@ -203,6 +205,13 @@ export class AddStaffComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
-    this.location.back();
+    // this.location.back();
+    if(sessionStorage.getItem("organizationTypeId") === '1'){
+      this.router.navigate(['/owner/staff/all']);
+      } else if(sessionStorage.getItem("organizationTypeId") === '2'){
+        this.router.navigate(['/practice/staff/all']);
+      }else if(sessionStorage.getItem("organizationTypeId") === '3'){
+        this.router.navigate(['/allied/staff/all']);
+      }
   }
 }

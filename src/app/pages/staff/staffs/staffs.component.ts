@@ -151,11 +151,25 @@ export class StaffsComponent  {
   }
 
   create(): void {
-    this.router.navigate(['/pages/staff/add']);
+    // this.router.navigate(['/pages/staff/add']);
+    if(sessionStorage.getItem("organizationTypeId") === '1'){
+      this.router.navigate(['/owner/staff/add']);
+      } else if(sessionStorage.getItem("organizationTypeId") === '2'){
+        this.router.navigate(['/practice/staff/add']);
+      }else if(sessionStorage.getItem("organizationTypeId") === '3'){
+        this.router.navigate(['/allied/staff/add']);
+      }
   }
 
   view(data: any): void {
-    this.router.navigate(['/pages/staff/view'], { queryParams: { id: data.id } });
+    // this.router.navigate(['/pages/staff/view'], { queryParams: { id: data.id } });
+    if(sessionStorage.getItem("organizationTypeId") === '1'){
+      this.router.navigate(['/owner/staff/view'], { queryParams: { id: data.id } });
+      } else if(sessionStorage.getItem("organizationTypeId") === '2'){
+        this.router.navigate(['/practice/staff/view'], { queryParams: { id: data.id } });
+      }else if(sessionStorage.getItem("organizationTypeId") === '3'){
+        this.router.navigate(['/allied/staff/view'], { queryParams: { id: data.id } });
+      }
   }
 
 
