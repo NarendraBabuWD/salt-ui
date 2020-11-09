@@ -7,7 +7,7 @@ import { AcceptReferralComponent } from './accept-referral/accept-referral.compo
 import { DeletedReferralsComponent } from './deleted-referrals/deleted-referrals.component';
 import { PendingReferralsComponent } from './pending-referrals/pending-referrals.component'
 import { SentReferralsComponent } from './sent-referrals/sent-referrals.component';
-
+import { PendingAlliedComponent } from './pending-allied/pending-allied.component';
 const routes: Routes = [{
   path: '',
   component: ReferralComponent,
@@ -35,6 +35,10 @@ const routes: Routes = [{
       {
         path: 'sentReferral',
         component: SentReferralsComponent
+      },
+      {
+        path: 'pendingAllied',
+        component: PendingAlliedComponent
       }
   ],
 }];
@@ -49,6 +53,7 @@ export const routedComponents = [
     ReferralComponent,
     RejectedReferralComponent,
     AcceptReferralComponent,
-    DeletedReferralsComponent
+    DeletedReferralsComponent,
+    PendingAlliedComponent
     // ViewReferralComponent
 ];

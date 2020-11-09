@@ -25,6 +25,7 @@ import { RejectedReferralComponent } from './rejected-referral/rejected-referral
 import { DeletedReferralsComponent } from './deleted-referrals/deleted-referrals.component';
 import { PendingReferralsComponent } from './pending-referrals/pending-referrals.component';
 import { SentReferralsComponent } from './sent-referrals/sent-referrals.component';
+import { PendingAlliedComponent } from './pending-allied/pending-allied.component';
 // import { ViewReferralComponent } from './view-referral/view-referral.component';
 
 @NgModule({
@@ -53,6 +54,7 @@ import { SentReferralsComponent } from './sent-referrals/sent-referrals.componen
     ...routedComponents,
     PendingReferralsComponent,
     SentReferralsComponent,
+    PendingAlliedComponent,
     // DeletedReferralsComponent,
     // RejectedReferralComponent,
     // ViewReferralComponent,

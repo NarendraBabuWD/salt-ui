@@ -19,11 +19,11 @@
          <tbody>
             <tr class="trRow" *ngFor="let referral of rejectedReferralsArray; index as i">
                 <td>{{ i + 1 }}</td>
-                    <td>{{ referral.patientName }}</td>
-                    <td>{{ referral.refferalSent }}</td>
-                    <td>{{ referral.alliedHealthName }}</td>
+                    <td>{{ referral.PatientName }}</td>
+                    <td>{{ referral.ReferralSentBy }}</td>
+                    <td>{{ referral.AlliedHealthName }}</td>
                     <td>{{ referral.comments }}</td>
-                    <td>{{ referral.referralRejectedOn }}</td>  
+                    <td>{{ referral.refferalRejectedOn }}</td>  
                     <!-- <td><button (click)="viewReferral(referral)" class="btn btn-primary btn-sm">View</button></td> -->
             </tr>
   </tbody>  

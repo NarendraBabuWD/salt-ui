@@ -1,0 +1,34 @@
+<nb-card>
+    <nb-card-header> Pending Referrals
+    </nb-card-header>
+    <nb-card-body>      
+  
+            
+      <table class="table" >
+        <thead>
+        <tr >
+            <th scope="col">Sno</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Allied Health Name</th>
+            <th scope="col">Last Modified On</th>
+            <th scope="col">Actions</th>
+            <!-- <th scope="col"></th> -->
+        </tr>
+        </thead>
+         <tbody>
+            <tr class="trRow" *ngFor="let referral of pendingReferralsArray; index as i">
+                <td>{{ i + 1 }}</td>
+                    <td>{{ referral.patient_name }}</td>
+                    <td>{{ referral.provider_name }}</td>
+                    <td>{{ referral.Date }}</td>  
+                    <td>
+                        <button  class="btn btn-primary btn-sm ml-3">View</button>
+                        <button  class="btn btn-success btn-sm ml-3" (click)="sendRef(referral)">Send</button>
+                        <button  class="btn btn-danger btn-sm ml-3" (click)="deleteRef(referral)">Delete</button>
+                    </td>
+            </tr>
+  </tbody>  
+  
+  </table>
+    </nb-card-body>
+  </nb-card>
