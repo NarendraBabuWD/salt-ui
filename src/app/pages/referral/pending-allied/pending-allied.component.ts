@@ -47,19 +47,19 @@ export class PendingAlliedComponent implements OnInit {
     });
 }
 
-sendRef(referral){
+acceptRef(referral){
     console.log(referral);
     // console.log(data);
   this.dialogService.open(ConfirmDeleteComponent, { hasBackdrop: true,
-  context:{ title:'Send', data:'Are you sure, You want to send this Referral?'} })
+  context:{ title:'Accept', data:'Are you sure, You want to accept this Referral?'} })
   .onClose.subscribe((res) => {
     if (res == 'delete') {
       let deleteById = { id: referral.referral_id};
-      this.service.post('Refferals/SendRefferal', deleteById, null).subscribe(
+      this.service.post('Refferals/AcceptRefferal', deleteById, null).subscribe(
         (response) => {
           this.getPendingReferrals();
           
-          this.toastr.success('Referrals Sent successfully');
+          this.toastr.success('Referrals Accept successfully');
         },
         (error) => {
           this.toastr.error(error.error);
@@ -68,22 +68,20 @@ sendRef(referral){
   });
   }
 
-/*deleteRef(referral){
-    console.log(referral);
- }*/
 
- deleteRef(data: any) {
+
+ rejectRef(data: any) {
    console.log(data);
   this.dialogService.open(ConfirmDeleteComponent, { hasBackdrop: true,
-  context:{ title:'Delete', data:'Are you sure, You want to delete this Referral?'} })
+  context:{ title:'Reject', data:'Are you sure, You want to reject this Referral?'} })
   .onClose.subscribe((res) => {
     if (res == 'delete') {
       let deleteById = { id: data.referral_id};
-      this.service.post('Refferals/DeleteRefferal', deleteById, null).subscribe(
+      this.service.post('Refferals/RejectRefferal', deleteById, null).subscribe(
         (response) => {
           this.getPendingReferrals();
           
-          this.toastr.success('Referrals Deleted successfully');
+          this.toastr.success('Referrals Rejected successfully');
         },
         (error) => {
           this.toastr.error(error.error);

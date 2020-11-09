@@ -209,7 +209,7 @@ export class PagesComponent {
             children:[
               {
                 title:'Pending Referrals',
-                link:'/allied/referral/pendingHospitalReferral'
+                link:'/allied/referral/pendingAllied'
               },
               {
                 title:'Accepted Referrals',

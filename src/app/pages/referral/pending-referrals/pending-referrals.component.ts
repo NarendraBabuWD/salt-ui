@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { EnumsService } from '../../../@core/data/enums.service';
 import { HttpService } from '../../../@core/services/http.service';
 import { ToastrService } from '../../../@theme/components/toaster/toastr.service';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 // import { LocalDataSource } from 'ng2-smart-table';
 import { NbDialogService } from '@nebular/theme';
 import { ConfirmDeleteComponent } from './../../../@theme/components/modal/confirm-delete/confirm-delete.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { ConfirmDeleteComponent } from './../../../@theme/components/modal/confi
 })
 export class PendingReferralsComponent implements OnInit {
 
-  constructor(private router: Router, private toastr: ToastrService,private dialogService: NbDialogService, 
+  constructor(private router: Router, private route: ActivatedRoute, private toastr: ToastrService,private dialogService: NbDialogService, 
     private service: HttpService, private enums: EnumsService) { }
 
   pendingReferralsArray = [
@@ -93,4 +94,8 @@ sendRef(referral){
   });
 }
 
+
+viewRef(){
+  this.router.navigate(['/practice/referral/referralInfo']);
+}
 }

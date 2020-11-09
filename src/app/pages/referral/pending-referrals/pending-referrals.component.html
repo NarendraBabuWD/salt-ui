@@ -22,7 +22,7 @@
                     <td>{{ referral.provider_name }}</td>
                     <td>{{ referral.Date }}</td>  
                     <td>
-                        <button  class="btn btn-primary btn-sm ml-3">View</button>
+                        <button  class="btn btn-primary btn-sm ml-3" (click)="viewRef()">View</button>
                         <button  class="btn btn-success btn-sm ml-3" (click)="sendRef(referral)">Send</button>
                         <button  class="btn btn-danger btn-sm ml-3" (click)="deleteRef(referral)">Delete</button>
                     </td>
