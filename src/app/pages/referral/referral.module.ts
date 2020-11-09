@@ -7,6 +7,7 @@ import { ToastrService } from '../../@theme/components/toaster/toastr.service';
 import { EnumsService } from '../../@core/data/enums.service';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ReferralInfoComponent } from './referral-info/referral-info.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 import {
@@ -29,10 +30,12 @@ import { DeletedReferralsComponent } from './deleted-referrals/deleted-referrals
 import { PendingReferralsComponent } from './pending-referrals/pending-referrals.component';
 import { SentReferralsComponent } from './sent-referrals/sent-referrals.component';
 import { PendingAlliedComponent } from './pending-allied/pending-allied.component';
+import { AlliedReferralInfoComponent } from './allied-referral-info/allied-referral-info.component';
 // import { ViewReferralComponent } from './view-referral/view-referral.component';
 
 @NgModule({
   imports: [
+    AngularEditorModule,
     ThemeModule,
     FormsModule,
     ReactiveFormsModule,
@@ -59,6 +62,7 @@ import { PendingAlliedComponent } from './pending-allied/pending-allied.componen
     SentReferralsComponent,
     PendingAlliedComponent,
     ReferralInfoComponent,
+    AlliedReferralInfoComponent,
     // DeletedReferralsComponent,
     // RejectedReferralComponent,
     // ViewReferralComponent,

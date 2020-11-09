@@ -16,29 +16,34 @@ export class PendingAlliedComponent implements OnInit {
 
   constructor(private router: Router, private toastr: ToastrService,private dialogService: NbDialogService, 
     private service: HttpService, private enums: EnumsService) { }
+    pendingReferralsArray:any=[];
 
-  pendingReferralsArray = [
-    {  patientName: 'Carolina SCHEIN',  alliedHealthName: 'Dr Susan Charlton | Dermatology',
-      lastModifiedOn: '05 Aug 2020 06:43'},
-    { patientName: 'Ms Anna ANDREWS',  alliedHealthName: 'Dr Mary Bloggs | General Medicine Speciality',
-    lastModifiedOn: '05 Aug 2020 06:43'},
-    {  patientName: 'Mr Fred ANDREWS', alliedHealthName: 'Dr Mary Bloggs | General Medicine Speciality',
-    lastModifiedOn: '05 Aug 2020 06:43' },
-    { patientName: 'Mrs Penny ANDERSON',  alliedHealthName: 'Dr Susan Charlton | Dermatology' , 
-    lastModifiedOn: '05 Aug 2020 06:43'},
-    { patientName: 'Henry WATLAND',  alliedHealthName: 'Dr Susan Charlton | Dermatology', 
-    lastModifiedOn: '05 Aug 2020 06:43' }
+  // pendingReferralsArray = [
+  //   {  patientName: 'Carolina SCHEIN',  alliedHealthName: 'Dr Susan Charlton | Dermatology',
+  //     lastModifiedOn: '05 Aug 2020 06:43'},
+  //   { patientName: 'Ms Anna ANDREWS',  alliedHealthName: 'Dr Mary Bloggs | General Medicine Speciality',
+  //   lastModifiedOn: '05 Aug 2020 06:43'},
+  //   {  patientName: 'Mr Fred ANDREWS', alliedHealthName: 'Dr Mary Bloggs | General Medicine Speciality',
+  //   lastModifiedOn: '05 Aug 2020 06:43' },
+  //   { patientName: 'Mrs Penny ANDERSON',  alliedHealthName: 'Dr Susan Charlton | Dermatology' , 
+  //   lastModifiedOn: '05 Aug 2020 06:43'},
+  //   { patientName: 'Henry WATLAND',  alliedHealthName: 'Dr Susan Charlton | Dermatology', 
+  //   lastModifiedOn: '05 Aug 2020 06:43' }
     
-  ];
+  // ];
 
   ngOnInit(): void {
       this.getPendingReferrals();
   }
 
+  viewpendingAllied(referral){
+
+    this.router.navigate(['pages/referral/alliedReferralInfo'],{queryParams:{refId:referral.referral_id}} )
+  }
   getPendingReferrals() {
     this.pendingReferralsArray = [];
-    let body = {  id:1, action:"yes"}
-    this.service.post('Refferals/GetReferralByStatus', body, null).subscribe(
+    let body = {  id:3}
+    this.service.post('Refferals/SendRefferal', body, null).subscribe(
       (response) => {
         console.log(response);
         this.pendingReferralsArray = response;

@@ -10,7 +10,7 @@
             <th scope="col">Sno</th>
             <th scope="col">Patient Name</th>
             <th scope="col">Allied Health Name</th>
-            <th scope="col">Last Modified On</th>
+            <!-- <th scope="col">Last Modified On</th> -->
             <th scope="col">Actions</th>
             <!-- <th scope="col"></th> -->
         </tr>
@@ -18,11 +18,11 @@
          <tbody>
             <tr class="trRow" *ngFor="let referral of pendingReferralsArray; index as i">
                 <td>{{ i + 1 }}</td>
-                    <td>{{ referral.patient_name }}</td>
-                    <td>{{ referral.provider_name }}</td>
-                    <td>{{ referral.Date }}</td>  
+                    <td>{{ referral.PatientName }}</td>
+                    <td>{{ referral.AlliedHealthName }}</td>
+                    <!-- <td>{{ referral.Date }}</td>   -->
                     <td>
-                        <button  class="btn btn-primary btn-sm ml-3">View</button>
+                        <button  class="btn btn-primary btn-sm ml-3" (click)="viewpendingAllied(referral)">View</button>
                         <button  class="btn btn-success btn-sm ml-3" (click)="acceptRef(referral)">Accept</button>
                         <button  class="btn btn-danger btn-sm ml-3" (click)="rejectRef(referral)">Reject</button>
                     </td>

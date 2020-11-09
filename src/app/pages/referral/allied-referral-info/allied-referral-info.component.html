@@ -1,0 +1,139 @@
+<nb-card>
+    <nb-card-header> <h4>Referral Info</h4>
+    </nb-card-header>
+    <nb-card-body>      
+  
+      <div class="row mb-3">
+        <div class="col-6">
+          <h6 class="sub-header">Paitient Details</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td class="col-md-1">infinitypath test</td>
+                </tr>
+                <tr>
+                  <th>Gender</th>
+                  <td class="col-md-1">female</td>
+                </tr>
+                <tr>
+                  <th>Address</th>
+                  <td class="col-md-1">#349 Near Nimagadda, Hyderabad.</td>
+                </tr>
+                <tr>
+                  <th>DOB</th>
+                  <td class="col-md-1">1997-09-08</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-6">
+          <h6 class="sub-header">Practitioner Details</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td class="col-md-1">infinitypath test</td>
+                </tr>
+                <tr>
+                  <th>Gender</th>
+                  <td class="col-md-1">female</td>
+                </tr>
+                <tr>
+                  <th>Address</th>
+                  <td class="col-md-1">#349 Near Nimagadda, Hyderabad.</td>
+                </tr>
+                <tr>
+                  <th>DOB</th>
+                  <td class="col-md-1">1997-09-08</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>    
+      
+      <div class="row">
+        <div class="col-6">
+          <h6 class="sub-header">Provider Details</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td class="col-md-1">Mr. Kennedy Drive</td>
+                </tr>
+                <tr>
+                  <th>Speciality</th>
+                  <td class="col-md-1">Non Medical User</td>
+                </tr>
+                <tr>
+                  <th>Address</th>
+                  <td class="col-md-1">#349 Near Nimagadda, Hyderabad.</td>
+                </tr>
+                <tr>
+                  <th>Phone Number</th>
+                  <td class="col-md-1">0755994200</td>
+                </tr>
+                <tr>
+                  <th>Email id</th>
+                  <td class="col-md-1">admin@kdmedical.com.au</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-6">
+          <h6 class="sub-header">Attachments</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>  
+                <tr>
+                  <td class="col-md-1">#349 Near Nimagadda, Hyderabad.</td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <angular-editor id="editor" [placeholder]="'Enter text here...'" [(ngModel)]="template" [config]="editorConfig"></angular-editor>
+    </div>
+    </nb-card-body>
+    <nb-card-footer class="text-center">
+         <button  class="btn btn-success btn-sm ml-3" (click)="AcceptRef()">Accept</button>
+         <button  class="btn btn-danger btn-sm ml-3" (click)="RejectedRef()">Reject</button>
+         <button  class="btn btn-info btn-sm ml-3">Cancel</button>        
+    </nb-card-footer>
+
+  </nb-card>

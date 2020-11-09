@@ -18,6 +18,9 @@ export class UpdateTemplateComponent {
     // private adminDashboardService: AdminDashboardService,
      private router: Router,
      ) {
+
+this.template="Dear Dr A Practitioner,<br>I would be happy to accept {PATIENT_ADDRESS} <br>and will contact the patient on their contact information {PATIENT_ADDRESS} provided and book an appointment with them.<br>{PATIENT_DOB}"
+
     this.editorConfig = {
       editable: true,
       spellcheck: true,
