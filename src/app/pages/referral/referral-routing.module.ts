@@ -8,6 +8,8 @@ import { DeletedReferralsComponent } from './deleted-referrals/deleted-referrals
 import { PendingReferralsComponent } from './pending-referrals/pending-referrals.component'
 import { SentReferralsComponent } from './sent-referrals/sent-referrals.component';
 import { PendingAlliedComponent } from './pending-allied/pending-allied.component';
+import { ReferralInfoComponent } from './referral-info/referral-info.component';
+
 const routes: Routes = [{
   path: '',
   component: ReferralComponent,
@@ -39,6 +41,10 @@ const routes: Routes = [{
       {
         path: 'pendingAllied',
         component: PendingAlliedComponent
+      },
+      {
+        path: 'referralInfo',
+        component: ReferralInfoComponent
       }
   ],
 }];

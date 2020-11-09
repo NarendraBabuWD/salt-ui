@@ -6,6 +6,9 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ToastrService } from '../../@theme/components/toaster/toastr.service';
 import { EnumsService } from '../../@core/data/enums.service';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ReferralInfoComponent } from './referral-info/referral-info.component';
+
+
 import {
   NbCardModule,
   NbDatepickerModule,
@@ -55,6 +58,7 @@ import { PendingAlliedComponent } from './pending-allied/pending-allied.componen
     PendingReferralsComponent,
     SentReferralsComponent,
     PendingAlliedComponent,
+    ReferralInfoComponent,
     // DeletedReferralsComponent,
     // RejectedReferralComponent,
     // ViewReferralComponent,

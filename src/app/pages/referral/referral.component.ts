@@ -28,14 +28,14 @@ export class ReferralComponent implements OnInit{
 
   ngOnInit(): void {
     // this.loadReferrals();
-    this.GetReferral();
+    // this.GetReferral();
     // this.AcceptRefferal();
     // this.RejactRefferal();
     // this.SendRefferal();
     // this.DeleteRefferal();
   }
 
-
+/*
   loadReferrals() {
     alert("ref");
     this.service.get('Refferals/GetRefferals', null).subscribe(
@@ -47,16 +47,12 @@ export class ReferralComponent implements OnInit{
       (error) => {
         this.toastr.error(error.error);
       });
-  }
+  }*/
   
-
-  viewReferral(id){
-
-  }
 
 
   // this.referralId='5eeb922effd26f28de6c866b';
-  GetReferral() {
+  /*GetReferral() {
     // debugger
     this.service.get('Refferals/GetRefferal?id=5eeb922effd26f28de6c866b',null).subscribe(
       (response) => {
@@ -92,8 +88,8 @@ RejactRefferal(){
     this.toastr.error(error.error);
   });
 
-}
-
+}*/
+/*
 postReferral:any=[];
 SendRefferal(){
   alert("SendRefferal");
@@ -105,7 +101,7 @@ SendRefferal(){
       console.log("send=",this.postReferral);
   },  (error) => {
     this.toastr.error(error.error);
-  });
+  });*/
 
 //  /Refferals/ReadJsonFiledocone
 // docOne(){
@@ -119,15 +115,11 @@ SendRefferal(){
 
 
 
-}
-
-
-
 
 
 
 // /Refferals/DeleteRefferal
-deleteRefferal:any=[];
+/*deleteRefferal:any=[];
 DeleteRefferal(){
   alert("DeleteRefferal");
   // var rejId='5eeb922effd26f28de6c866b';
@@ -138,8 +130,5 @@ DeleteRefferal(){
   },  (error) => {
     this.toastr.error(error.error);
   });
-}
-
-
-
+}*/
 }
