@@ -37,7 +37,6 @@ export class RejectedReferralComponent implements OnInit {
   rejectedReferralsArray:any=[];
   RejactRefferal(){
     
-  alert("reje");
   // var rejId='5eeb922effd26f28de6c866b';
   // debugger
   let  body={id:2};

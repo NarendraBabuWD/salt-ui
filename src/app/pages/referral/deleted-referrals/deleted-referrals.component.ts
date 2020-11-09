@@ -44,7 +44,6 @@ export class DeletedReferralsComponent implements OnInit {
 // /Refferals/DeleteRefferal
 deletedReferralsArray:any=[];
 DeleteRefferal(){
-  alert("DeleteRefferal");
   // var rejId='5eeb922effd26f28de6c866b';
   let body={id:5}
   this.service.post('Refferals/DeleteRefferal',body,null).subscribe(
