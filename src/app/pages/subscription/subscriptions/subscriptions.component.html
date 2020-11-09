@@ -1,0 +1,56 @@
+<nb-card>
+    <nb-card-header> Subscriptions 
+      <button type="button" nbButton status="primary" class="btn btn-primary float-right" 
+      (click)="create()">Add </button>
+    </nb-card-header>
+    <nb-card-body>     
+      <div class="row">
+        <div class="form-group col-md-3">
+            <label for="organisation_type_id" class="label">Organisation Type:</label>
+            <ng-select [clearable]="false" appendTo="body" (change)="loadSubscriptions($event);"
+            placeholder="Choose Organization type" 
+               [items]="orgTypes" bindLabel="name" bindValue="id">
+           </ng-select>
+          </div>
+      
+    </div>
+      <!-- <ng2-smart-table [settings]="dataGridSettings" [source]="dataGridSource" (edit)="edit($event)" (delete)="view($event)"
+      (userRowSelect)="onUserRowSelect($event)" >
+      </ng2-smart-table> -->
+
+      <table class="table" >
+        <thead>
+        <tr >
+        <th scope="col">Subscription Name</th>
+        <th scope="col">Organization Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Trail</th>
+        <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+       <tr *ngFor="let item2 of subscriptions">
+        <td >{{item2.name}}</td>
+        <td >{{item2.organisation_type_id}}</td>
+        <td >{{item2.description}}</td>
+        <td >{{item2.trail}}</td>
+        <td>
+        <button class="btn btn-sm btn-primary" (click)="edit(item2)"><i class="nb-compose" title="Update"></i></button>
+        &nbsp;
+        <!-- <button class="btn btn-sm btn-warning" (click)="view(item2)"><i class="nb-compose" title="View"></i></button>
+        &nbsp; -->
+         <button class="btn btn-sm btn-danger" (click)="confirmDelete(item2)"><i class="nb-trash" title="Delete"></i></button>
+        &nbsp;
+        <!-- <label class="switch"> 
+        <input type="checkbox" [checked]="item2.status == 1" (change)="changeStatus(item2,$event)">
+        <span class="slider round"></span>
+        </label>
+        </td> -->
+        </tr> 
+        
+  </tbody>
+  
+  </table>
+
+    </nb-card-body>
+  </nb-card>

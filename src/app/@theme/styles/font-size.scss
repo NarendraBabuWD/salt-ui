@@ -1,0 +1,52 @@
+.menu-item {
+  text-align: left;
+}
+
+.ng2-smart-action-multiple-select .form-control {
+  height: 15px !important;
+}
+
+input[type="checkbox"].form-control:focus {
+  box-shadow: none;
+}
+
+a.ng2-smart-action{
+   font-size: 1.5rem !important;
+}
+
+.btn-link {
+  font-weight: 400;
+  color: #007bff;
+  text-decoration: none;
+}
+
+@include nb-install() {
+  .form-control {
+    background-color: nb-theme(input-basic-background-color);
+    border: 1px solid nb-theme(input-outline-color);
+    color: nb-theme(input-basic-text-color);
+    font-size: 13.2px;
+  }
+
+  .dropdown-menu {
+    font-family: nb-theme(menu-text-font-family);
+    font-size: nb-theme(menu-text-font-size);
+    background-color: nb-theme(card-background-color);
+    border: 1px solid nb-theme(card-border-color);
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    margin: 0.3rem 0 0;
+    cursor: pointer;
+  }
+
+  .li-dropdown {
+    color: nb-theme(menu-text-color);
+    padding: nb-theme(menu-item-padding);
+    line-height: nb-theme(menu-text-line-height);
+    padding: nb-theme(menu-submenu-item-padding);
+  }
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background-color: nb-theme(select-outline-basic-hover-background-color);
+    color: nb-theme(menu-item-hover-text-color);
+  }
+}

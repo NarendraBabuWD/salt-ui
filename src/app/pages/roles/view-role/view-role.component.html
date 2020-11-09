@@ -1,0 +1,54 @@
+<nb-card>
+  <nb-card-header> 
+      <div class="row">
+          <div class="col-8"> View Role </div>
+          <div class="label col-4 text-right" style="cursor: pointer">
+            <i class="ion-ios-arrow-back back" (click)="cancel()"> Back</i>
+          </div>
+      </div>
+  </nb-card-header>
+  <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="medium">
+         <div class="row">
+          <div class="offset-md-8 col-md-4" style="text-align: right;">
+              <!-- <button nbButton (click)="edit()" status="primary">Edit</button> -->
+              <button nbButton (click)="cancel()" status="danger">Close</button>
+          </div>
+         </div>
+        
+          <div class="row">
+              <div class="form-group col-md-4">
+                  <label for="orgTypeId" class="label">Organization type</label>
+                  <input _ngcontent-xna-c318="" nbinput="" fullwidth="" type="text" tabindex="1" 
+                    value="{{orgType}}" readonly
+                  formcontrolname="orgTypeId" class="form-control ng-pristine ng-invalid input-full-width size-medium status-basic  "  ng-reflect-full-width="" ng-reflect-maxlength="160"   >
+                  <br></div>
+
+          <div class="form-group col-md-4">
+              <label for="roleName" class="label">Role Name</label> <input _ngcontent-xna-c318="" nbinput="" fullwidth="" type="text" tabindex="1" 
+              value="{{roleName}}" readonly
+            formcontrolname="roleName" class="form-control ng-pristine ng-invalid input-full-width size-medium status-basic  "  ng-reflect-full-width="" ng-reflect-maxlength="160"   ></div>
+          </div>
+          <br/>
+
+          <div class="col-md-6" >
+          <table class="table-responsive">
+              <thead>
+                  <th> Modules </th>
+                  <th> Permissions </th>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let module of roleModules" >
+                    <td>{{module.name}}
+                    </td>
+                    <td>
+                      <p *ngFor="let perm of module.permissions" >
+                        {{perm.name}}
+                          <!-- <nb-checkbox status="success" [checked]="perm.status"  data-id="{{perm.id}}" > {{perm.name}}</nb-checkbox>                 -->
+                      </p>
+                    </td>
+                  </tr>
+              </tbody>
+          </table>          
+          </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,31 @@
+<nb-card>
+    <nb-card-header> Sent Referrals List
+    </nb-card-header>
+    <nb-card-body>      
+  
+            
+      <table class="table" >
+        <thead>
+        <tr >
+            <th scope="col">Sno</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Allied Health Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Sent Referral On</th>
+            <!-- <th scope="col"></th> -->
+        </tr>
+        </thead>
+         <tbody>
+            <tr class="trRow" *ngFor="let referral of sentReferralsArray; index as i">
+                <td>{{ i + 1 }}</td>
+                    <td>{{ referral.patientName }}</td>
+                    <td>{{ referral.alliedHealthName }}</td>
+                    <td>{{ referral.status }}</td>
+                    <td>{{ referral.sentReferralOn }}</td>  
+                    <!-- <td><button (click)="viewReferral(referral)" class="btn btn-primary btn-sm">View</button></td> -->
+            </tr>
+  </tbody>  
+  
+  </table>
+    </nb-card-body>
+  </nb-card>

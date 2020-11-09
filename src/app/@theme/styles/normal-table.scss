@@ -1,0 +1,75 @@
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  
+table tr th,
+table tr th a {
+  font-family: nb-theme(smart-table-header-font-family);
+  font-size: nb-theme(smart-table-header-font-size);
+  font-weight: nb-theme(smart-table-header-font-weight);
+  line-height: nb-theme(smart-table-header-line-height);
+  color: nb-theme(smart-table-header-fg);
+}
+
+table tr td {
+  font-family: nb-theme(smart-table-font-family);
+  font-size: nb-theme(smart-table-font-size);
+  font-weight: nb-theme(smart-table-font-weight);
+  line-height: nb-theme(smart-table-line-height);
+  color: nb-theme(smart-table-fg);
+}
+
+table tr th,
+table tr td {
+  position: relative;
+  padding: nb-theme(smart-table-padding);
+  border: 1px solid nb-theme(smart-table-separator);
+  vertical-align: middle;
+}
+
+table tr {
+  th {
+    padding: nb-theme(smart-table-padding);
+    @include nb-ltr(padding-right, 1.75rem);
+    @include nb-rtl(padding-left, 1.75rem);
+  }
+
+  th a {
+    &:hover, &:active, &:visited {
+      color: nb-theme(smart-table-header-fg);
+      text-decoration: none;
+    }
+    &.sort.asc, &.sort.desc {
+
+      font-weight: nb-theme(smart-table-header-font-weight);
+
+    }
+  }
+}
+
+thead th {
+    background: nb-theme(smart-table-header-bg);
+    font-family: nb-theme(smart-table-header-font-family);
+    font-size: nb-theme(smart-table-header-font-size);
+    font-weight: nb-theme(smart-table-header-font-weight);
+    line-height: nb-theme(smart-table-header-line-height);
+    color: nb-theme(smart-table-header-fg);
+
+    position: relative;
+    padding: nb-theme(smart-table-padding);
+    border: 1px solid nb-theme(smart-table-separator);
+    vertical-align: middle;
+  }
+
+tbody tr {
+  &.selected, &:hover {
+    background: nb-theme(smart-table-bg-active) !important;
+  }
+
+  &:nth-child(2n) {
+    background-color: nb-theme(smart-table-bg-even);
+  }
+}
+};

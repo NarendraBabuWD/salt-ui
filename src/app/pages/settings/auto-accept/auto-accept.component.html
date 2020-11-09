@@ -1,0 +1,64 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Settings</h4>
+                        </li>
+                        <!-- <li class="breadcrumb-item bcrumb-1">
+                            <a routerLink="/pages/dashboard">
+                                <i class="fas fa-home"></i> Home</a>
+                        </li> -->
+                        <!-- <li class="breadcrumb-item active">{{IsAutoAccept?'Auto Accept':'Template Settings'}}</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>{{IsAutoAccept?'Template Settings':'Auto Accept'}}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                          <div class="custom-control custom-switch">
+                            <input type="checkbox" (ngModelChange)="UpdateAutoAccept()"
+                             class="custom-control-input toggle-bar" [(ngModel)]="unchecked"  id="customSwitches">
+                            <label class="custom-control-label" for="customSwitches">Auto Accept Referral</label>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div *ngIf="IsAutoAccept">
+             
+            <div class="row" *ngIf="unchecked">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            Please select the time after which you would like to auto accept the Referral Sent
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col">
+                            <div class="d-flex">
+                                <div style="padding-right: 15px;">Auto Accept in Minutes</div>
+                                <div>
+                                    <select class="form-control" [(ngModel)]="autoAcceptAfterSeconds" (change)="onBlurMethod()">
+                                    <option [value]="min.value" *ngFor="let min of Minutes">
+                                        {{min.label}}
+                                    </option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

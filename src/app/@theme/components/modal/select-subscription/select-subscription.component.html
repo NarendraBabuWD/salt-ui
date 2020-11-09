@@ -1,0 +1,23 @@
+<nb-card size="small">
+    <nb-card-header>{{title}}</nb-card-header>
+    <nb-card-body>
+        <div class="row" *ngIf="editmode">
+            <!-- <p>Please select a subscription from the list.</p> -->
+            <div class="form-group">
+                <label for="subscription" class="label">Subscription</label>
+                <!-- <ng-select [clearable]="false"  appendTo="body" 
+                    placeholder="Choose subscription" 
+                    [items]="subscriptionIds" bindLabel="name" bindValue="id">
+                </ng-select> -->
+                <nb-select placeholder="Choose subscription"  fullWidth (selectedChange)="saveSubscription($event);" >
+                    <nb-option *ngFor="let data of subscriptionIds" value={{data.subid}}>{{data.subname}}</nb-option>
+                </nb-select>
+              </div> 
+        </div>
+      <p *ngIf="!editmode">{{message}}</p>
+    </nb-card-body>
+    <nb-card-footer>
+      <button class="cancel" nbButton status="danger" (click)="cancel()">No</button>
+      <button nbButton status="success"  type="submit" (click)="submit()">Yes</button>
+    </nb-card-footer>
+  </nb-card>

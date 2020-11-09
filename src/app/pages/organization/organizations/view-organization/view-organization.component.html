@@ -1,0 +1,187 @@
+<nb-card>
+    <nb-card-header>
+      <div class="row">
+          <div class="col-6">
+              <span>View Organisation</span>
+          </div>
+        <div class="label col-6 text-right" style="cursor: pointer">
+            <!-- <button nbButton status="primary"  (click)="edit($event)" style="margin-right: 5px;">
+                Edit
+            </button> -->
+            <button nbButton (click)="cancel()" status="danger">Cancel</button>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="medium">
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="organization" class="label">Organisation Name:</label>
+            <p>{{orgData.organisation_name}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="tradingName" class="label">Trading Name</label>
+            <p>{{orgData.trading_name}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="ABN" class="label">ABN</label>
+            <p>{{orgData.abn}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="Email" class="label">Email</label>
+            <p>{{orgData.email}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="businessContact" class="label">Contact</label>
+            <p>{{orgData.phone}}</p>
+          </div>
+
+          <div class="form-group col-md-3">
+            <label for="orgType" class="label">Organisation Type</label>
+            <p>{{orgData.organisation_type_id}}</p>
+          </div>
+         
+        </div>
+        
+        <div class="row">
+          <div class="form-group offset-md-8 col-md-4 text-right">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+              <!-- <button type="button" nbButton status="primary" class="btn btn-primary" (click)="createLocation()">Add New</button>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-primary"
+                   aria-haspopup="true" aria-expanded="false">
+                </button> -->
+
+                <button nbButton status="primary" (click)="createLocation()">Add Location</button>
+
+                <!-- <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <li class="dropdown-item" (click)="delete()">Delete </li>
+                  <li class="dropdown-item" (click)="deactivate()">Activate/Deactivate </li>
+                </div> -->
+              
+            </div>
+          </div>
+        </div>
+
+        <!-- <ng2-smart-table [settings]="dataGridSettings" [source]="dataGridSource" (edit)="editLocation($event)" (delete)="view($event)"
+         (userRowSelect)="onUserRowSelect($event)" >
+        </ng2-smart-table> -->
+
+
+        <table class="table" >
+          <thead>
+          <tr >
+          <th scope="col">Location Name</th>
+          <!-- <th scope="col">Mobile</th> -->
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <!-- <th scope="col">City</th> -->
+          <th scope="col" style="text-align: center; vertical-align: middle;">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item2 of locations">
+          <td >{{item2.locname}}</td>
+          <td >{{item2.locemail}}</td>
+          <td >{{item2.locphone}}</td>
+          <td style="text-align: center; vertical-align: middle;">
+          <button class="btn btn-sm btn-primary" (click)="editLocation(item2)"><i class="nb-compose" title="Update"></i></button>
+          &nbsp;
+          <button class="btn btn-sm btn-warning" (click)="view(item2)"><i class="nb-compose" title="View"></i></button>
+          &nbsp;
+          <button class="btn btn-sm btn-danger" (click)="confirmDelete(item2)"><i class="nb-trash" title="Delete"></i></button>
+          &nbsp;
+          <label class="switch">
+          <input type="checkbox" [checked]="item2.status == 1" (change)="changeStatus(item2,$event)">
+          <span class="slider round"></span>
+          </label>
+          </td>
+          </tr>
+          
+    </tbody>
+    
+    </table>
+
+        <!-- Location Fields here --> 
+        <!-- <span>Location Details</span>
+        
+        <div class="row">
+          <div class="form-group col-md-3">
+              <label for="locname" class="label">Name</label>
+              <p>{{orgDummy.locname}}</p>
+          </div>
+          <div class="form-group col-md-3">
+              <label for="locIdentifier" class="label">Identifier</label>
+              <p>{{orgDummy.locIdentifier}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="locphone" class="label">phone</label>
+            <p>{{orgDummy.locphone}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="locEmail" class="label">Email</label>
+            <p>{{orgDummy.locEmail}}</p>
+          </div>
+        </div>
+          
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="locAddress" class="label">Address</label>
+            <p>{{orgDummy.locAddress}}</p>
+            </div>
+          <div class="form-group col-md-3">
+            <label for="locSuburb" class="label">Suburb</label>
+            <p>{{orgDummy.locSuburb}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="locPostcode" class="label">Postcode</label>
+            <p>{{orgDummy.locPostcode}}</p>
+            </div>
+          <div class="form-group col-md-3">
+            <label for="locState" class="label">State</label>
+            <p>{{orgDummy.locState}}</p>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label for="locTimezone" class="label">Time Zone</label>
+            <p>{{orgDummy.locTimezone}}</p>
+         </div> 
+        </div>  -->
+
+        <!--Contact details comes here-->
+        <!-- <span>Contact Person Details</span>
+
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="title" class="label">Title</label>
+            <p>{{orgDummy.ContactTitle}}</p>
+          </div>
+  
+          <div class="form-group col-md-3">
+            <label for="ContactName" class="label">Name</label>
+            <p>{{orgDummy.ContactName}}</p>
+          </div>
+  
+          <div class="form-group col-md-3">
+            <label for="ContactPhone" class="label">Phone</label>
+            <p>{{orgDummy.ContactPhone}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="ContactEmail" class="label">Contact Email</label>
+            <p>{{orgDummy.ContactEmail}}</p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="ContactDesignationId" class="label">Designation</label>
+            <p>{{orgDummy.ContactDesignationId}}</p>
+          </div>
+        </div> -->
+        
+    </nb-card-body>
+  </nb-card>

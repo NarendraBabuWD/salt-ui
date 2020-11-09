@@ -1,0 +1,133 @@
+<nb-card>
+    <nb-card-header>
+      <div class="row">
+          <div class="col-6">
+              <span><h4>Practitionar Dashboard</h4></span>
+          </div>
+       
+      </div>
+    </nb-card-header>
+    <nb-card-body >
+
+
+        
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+                <div  class="card infobox-5">
+                    <div  class="card-body">
+                        <div  class="clearfix">
+                            <div class="float-left card-icon cursor-pointer" 
+                            routerlink="/dashboard/addHUser" tabindex="0">
+                            <i  class="material-icons col-green">person_add</i>
+                            <p  class="text-muted mt-3 mb-0">Add New User</p>
+                        </div>
+                        <div  class="float-right cursor-pointer" 
+                        routerlink="/dashboard/viewHUser" tabindex="0">
+                        <p  class="text-right font-18">Users</p>
+                        <div  class="col-green"><h3  class="text-right mb-0">8</h3></div>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+        <div  class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+            <div  class="card infobox-5">
+                <div  class="card-body">
+                    <div  class="clearfix">
+                        <div  class="float-left card-icon cursor-pointer" 
+                        routerlink="/dashboard/addAHUser" tabindex="0">
+                        <i  class="material-icons col-blue">person_add</i>
+                    </div>
+                    <div  class="float-right cursor-pointer" 
+                    routerlink="/dashboard/viewAHUser" tabindex="0">
+                    <p  class="text-right font-18">Allied Health</p>
+                    <div  class="col-blue"><h3  class="text-right mb-0">0</h3>
+                    </div>
+                </div>
+            </div><p  class="text-muted mt-3 mb-0">Allied Health</p>
+        </div>
+    </div>
+</div></div>
+
+<br>
+
+<div class="card">
+    <div class="card-header">
+        User List
+    </div>
+    <div class="card-body">
+        <div class="row">
+                  
+            <table class="table" >
+              <thead>
+              <tr >
+                  <th scope="col">Full Name</th>
+                  <th scope="col">Business Id</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Actions</th>
+                  <!-- <th scope="col"></th> -->
+              </tr>
+              </thead>
+               <tbody>
+                  <tr class="trRow" *ngFor="let item of userData; index as i">
+                     
+                          <td>{{ item.name }}</td>
+                          <td>{{ item.businessId }}</td>
+                          <td>{{ item.email }}</td>
+                          <td>{{ item.address }}</td>  
+                          <td>
+                              <button (click)="viewitem(item)" class="btn btn-primary btn-sm">View</button>
+                          </td>
+                  </tr> 
+        </tbody>  
+        
+        </table>
+              </div>
+             
+    </div>
+    
+  </div>
+        
+        <br>
+
+        <div class="card">
+            <div class="card-header">
+                Allied Health
+            </div>
+            <div class="card-body">
+                <div class="row">
+                  
+                    <table class="table" >
+                      <thead>
+                      <tr >
+                          <th scope="col">Full Name</th>
+                          <th scope="col">Business Id</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Address</th>
+                          <th scope="col">Actions</th>
+                          <!-- <th scope="col"></th> -->
+                      </tr>
+                      </thead>
+                       <tbody>
+                          <tr class="trRow" *ngFor="let item of userData; index as i">
+                             
+                                  <td>{{ item.name }}</td>
+                                  <td>{{ item.businessId }}</td>
+                                  <td>{{ item.email }}</td>
+                                  <td>{{ item.address }}</td>  
+                                  <td>
+                                      <button (click)="viewitem(item)" class="btn btn-primary btn-sm">View</button>
+                                  </td>
+                          </tr> 
+                </tbody>  
+                
+                </table>
+                      </div>
+                      
+            </div>
+            
+          </div>
+       
+              
+    </nb-card-body>
+  </nb-card>

@@ -1,0 +1,100 @@
+<nb-card>
+    <nb-card-header>
+      <div class="row">
+          <div class="col-6">
+              <span>View Location</span>
+          </div>
+        <div class="label col-6 text-right" style="cursor: pointer">
+            <button nbButton status="primary"  (click)="edit($event)" style="margin-right: 5px;">
+                Edit
+            </button>
+            <button nbButton (click)="cancel()" status="danger">Cancel</button>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="medium">
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label class="label">Location Name:</label>
+            <p>{{locData.locname}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label class="label">Identifier</label>
+            <p>{{locData.locidentifier}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="ABN" class="label">Address</label>
+            <p>{{locData.locaddress}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="Email" class="label">Time zone</label>
+            <p>{{locData.loctimezone}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label class="label">Location Email:</label>
+            <p>{{locData.locemail}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="tradingName" class="label">Phone</label>
+            <p>{{locData.locphone}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="ABN" class="label">Suburb</label>
+            <p>{{locData.locsuburb}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="Email" class="label">Postcode </label>
+            <p>{{locData.locpostcode}}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="Email" class="label">State </label>
+            <p>{{locData.locstate}}</p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="form-group offset-md-8 col-md-4 text-right">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+              <button type="button" nbButton status="primary" class="btn btn-primary" (click)="createContact()">Add Contact</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- <ng2-smart-table [settings]="dataGridSettings" [source]="dataGridSource" (edit)="editContact($event)" (delete)="delete($event)">
+        </ng2-smart-table> -->
+
+
+           
+      <table class="table" >
+        <thead>
+        <tr >
+        <th scope="col">Contact Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item2 of contactsData">
+        <td >{{item2.conname}}</td>
+        <td >{{item2.conemail}}</td>
+        <td >{{item2.conphone}}</td>
+        <td>
+        <button class="btn btn-sm btn-primary" (click)="editContact(item2)"><i class="nb-compose" title="Update"></i></button>
+        &nbsp;
+        
+        <button class="btn btn-sm btn-danger" (click)="deleteContact(item2)"><i class="nb-trash" title="Delete"></i></button>
+        
+        </td>
+        </tr>
+        
+  </tbody>
+  
+  </table>
+
+        
+    </nb-card-body>
+  </nb-card>

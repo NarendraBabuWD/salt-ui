@@ -1,0 +1,33 @@
+<nb-card>
+    <nb-card-header> Rejected Referrals List
+    </nb-card-header>
+    <nb-card-body>      
+  
+            
+      <table class="table" >
+        <thead>
+        <tr >
+            <th scope="col">Sno</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Referral Sent</th>
+            <th scope="col">Allied Health Name</th>
+            <th scope="col">Comment</th>
+            <th scope="col">Referral Rejected On</th>
+            <!-- <th scope="col"></th> -->
+        </tr>
+        </thead>
+         <tbody>
+            <tr class="trRow" *ngFor="let referral of rejectedReferralsArray; index as i">
+                <td>{{ i + 1 }}</td>
+                    <td>{{ referral.patientName }}</td>
+                    <td>{{ referral.refferalSent }}</td>
+                    <td>{{ referral.alliedHealthName }}</td>
+                    <td>{{ referral.comments }}</td>
+                    <td>{{ referral.referralRejectedOn }}</td>  
+                    <!-- <td><button (click)="viewReferral(referral)" class="btn btn-primary btn-sm">View</button></td> -->
+            </tr>
+  </tbody>  
+  
+  </table>
+    </nb-card-body>
+  </nb-card>

@@ -1,0 +1,67 @@
+<nb-card>
+    <nb-card-header> Locations 
+      <button type="button" nbButton status="primary" class="btn btn-primary float-right"
+        (click)="create()" *ngIf="addbtn">Add</button>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row">
+          <div class="form-group col-md-3">
+            <nb-select placeholder="organisation" fullWidth  [(ngModel)]="organizationId" (selectedChange)="loadLocations($event)">
+                <nb-option *ngFor="let data of organizations" value={{data.id}}  >
+                  {{data.name}}</nb-option>
+            </nb-select>
+          </div>
+
+          <!-- <div class="form-group offset-md-5 col-md-4 text-right">
+              <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" nbButton status="primary" class="btn btn-primary dropdown-toggle"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <li class="dropdown-item" (click)="deactivate()">Activate/Deactivate </li>
+                  <li class="dropdown-item" (click)="delete()">Delete </li>
+                </div>
+              </div>
+          </div> -->
+        </div>
+
+        <!-- <ng2-smart-table [settings]="dataGridSettings" [source]="dataGridSource" (edit)="editLocation($event)" (delete)="view($event)"
+         (userRowSelect)="onUserRowSelect($event)" >
+        </ng2-smart-table> -->
+
+             
+      <table class="table" >
+        <thead>
+        <tr >
+        <th scope="col">Location Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item2 of locations">
+        <td >{{item2.locname}}</td>
+        <td >{{item2.locemail}}</td>
+        <td >{{item2.locphone}}</td>
+        <td>
+        <button class="btn btn-sm btn-primary" (click)="editLocation(item2)"><i class="nb-compose" title="Update"></i></button>
+        &nbsp;
+        <button class="btn btn-sm btn-warning" (click)="view(item2)"><i class="nb-compose" title="View"></i></button>
+        &nbsp;
+        <button class="btn btn-sm btn-danger" (click)="confirmDelete(item2)"><i class="nb-trash" title="Delete"></i></button>
+        &nbsp;
+        <label class="switch">
+        <input type="checkbox" [checked]="item2.locstatus == 1" (change)="changeStatus(item2,$event)">
+        <span class="slider round"></span>
+        </label>
+        </td>
+        </tr>
+        
+  </tbody>
+  
+  </table>
+
+
+    </nb-card-body>
+  </nb-card>

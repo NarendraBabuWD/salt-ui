@@ -1,0 +1,61 @@
+<nb-card>
+    <nb-card-header> Organisations 
+      <button type="button" nbButton status="primary" class="btn btn-primary float-right" 
+      (click)="create()">Add 
+    </button>
+    </nb-card-header>
+    <nb-card-body>      
+      <div class="row">
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <li class="dropdown-item" (click)="Deactivate()">Activate/Deactivate </li>
+                <li class="dropdown-item" (click)="delete()">Delete </li>
+              </div>
+
+      </div>
+
+      <!-- <div class="form-group offset-md-8 col-md-4 text-right">
+        <button type="button" nbButton status="danger" class="btn btn-danger" (click)="Deactivate($event)">Deactive</button>
+
+        <button type="button" nbButton status="primary" class="btn btn-primary" (click)="create()">Add New</button>
+    </div> -->
+    <!-- </div> -->
+      <!-- <ng2-smart-table [settings]="dataGridSettings" [source]="dataGridSource" (edit)="edit($event)" (delete)="view($event)"
+      (userRowSelect)="onUserRowSelect($event)" >
+      </ng2-smart-table> -->
+
+            
+      <table class="table" >
+        <thead>
+        <tr >
+        <th scope="col">Organisation Name</th>
+        <th scope="col">Organisation Type</th>
+        <th scope="col">Trading Name</th>
+        <th scope="col">ABN</th>
+        <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item2 of organizations">
+        <td >{{item2.organisation_name}}</td>
+        <td >{{item2.org_type_name}}</td>
+        <td >{{item2.trading_name}}</td>
+        <td >{{item2.abn}}</td>
+        <td>
+        <button class="btn btn-sm btn-primary" (click)="edit(item2)"><i class="nb-compose" title="Update"></i></button>
+        &nbsp;
+        <button class="btn btn-sm btn-warning" (click)="view(item2)"><i class="nb-compose" title="View"></i></button>
+        &nbsp;
+        <button class="btn btn-sm btn-danger" (click)="confirmDelete(item2)"><i class="nb-trash" title="Delete"></i></button>
+        &nbsp;
+        <label class="switch">
+        <input type="checkbox" [checked]="item2.status == 1" (change)="changeStatus(item2,$event)">
+        <span class="slider round"></span>
+        </label>
+        </td>
+        </tr>
+        
+  </tbody>
+  
+  </table>
+    </nb-card-body>
+  </nb-card>

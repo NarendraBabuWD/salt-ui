@@ -1,0 +1,113 @@
+<nb-card>
+    <nb-card-header>
+      <div class="row">
+        <div class="col-8">
+          <span *ngIf="!editMode">Add New</span>
+          <span *ngIf="editMode">Edit</span>
+        </div>
+        <div class="label col-4 text-right" style="cursor: pointer">
+          <i class="ion-ios-arrow-back back" (click)="goBack()"> Back</i>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="medium">
+      <form class="form-horizontal" [formGroup]="orgContactForm" autocomplete="off" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="offset-md-8 col-md-4" style="text-align: right;">
+            <button nbButton status="primary" [disabled]="orgContactForm.invalid">
+              <span *ngIf="!editMode">Save</span>
+              <span *ngIf="editMode">Update</span>
+            </button>
+            <button type="button" nbButton (click)="cancel()" status="danger">Cancel</button>
+          </div>
+        </div>
+        
+        <!-- <div class="row" *ngIf="!editMode">
+          <div class="form-group col-md-4">
+            <label for="organization" class="label">Organization</label>
+            <ng-select [clearable]="false" appendTo="body"
+            placeholder="Choose Organization" (change)="loadLocations($event);"
+               [items]="organizations" bindLabel="organisation_name" bindValue="organisation_id">
+           </ng-select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="organisation_location_id" class="label">Location</label>
+            <ng-select [clearable]="false" appendTo="body" formControlName="organisation_location_id" placeholder="Choose Location"
+               [items]="locations" bindLabel="locname" bindValue="organisation_location_id">
+           </ng-select>
+            <small class="text-danger" *ngIf="f.organisation_location_id.hasError('required') && f.organisation_location_id.touched">Please enter location name.</small>
+          </div>
+        </div> -->
+        
+        <div class="row" *ngIf="editMode">
+          <div class="form-group col-md-4 ">
+            <label for="organization" class="label">Organization</label>
+            <p>{{orgName}}</p>
+          </div>
+
+          <div class="form-group col-md-4 ">
+            <label for="locationId" class="label">Location</label>
+           <p>{{locName}}</p>
+          </div>
+
+          <div class="form-group col-md-4" style="display: none;">
+            <label for="locationId" class="label">Location</label>
+            <ng-select [clearable]="false" appendTo="body" formControlName="locationId" placeholder="Choose Location"
+               [items]="locations" bindLabel="locname" bindValue="organisation_location_id">
+           </ng-select>
+            <small class="text-danger" *ngIf="f.organisation_location_id.hasError('required') && f.organisation_location_id.touched">Please enter location name.</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label for="title" class="label">Title</label>
+            <input nbInput fullWidth type="text" [required]="true" class="form-control"
+              id="title" placeholder="Title" name="contitle" maxlength="160" CharactersOnly="true"
+              formControlName="contitle"/>
+              <small class="text-danger" *ngIf="f.contitle.hasError('required') && f.contitle.touched">Please enter Title.</small>
+              <small class="text-danger" *ngIf="f.contitle.hasError('pattern')">Please enter characters only.</small>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="name" class="label">Name</label>
+            <input nbInput fullWidth type="text" [required]="true" class="form-control"
+              id="name" placeholder="Name" name="conname" maxlength="160" 
+              formControlName="conname"/>
+            <small class="text-danger" *ngIf="f.conname.hasError('required') && f.conname.touched">Please enter name.</small>
+          </div>
+
+          <div class="form-group col-md-4">
+          <label for="phone" class="label">Phone</label>
+          <input nbInput fullWidth type="text" [required]="true" class="form-control"
+            id="Title" placeholder="phone" name="conphone" maxlength="11" minlength="10" NumbersOnly="true"
+            formControlName="conphone"/>
+            <small class="text-danger" *ngIf="f.conphone.hasError('required') && f.conphone.touched">Please enter phone number.</small>
+            <small class="text-danger" *ngIf="f.conphone.hasError('minlength')">Please enter minimum 10 digit phone number.</small>
+
+          </div>
+        </div>
+         
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label for="Email" class="label">Email</label>
+            <input nbInput fullWidth type="email" class="form-control" id="Email" placeholder="Email" [required]="true" maxlength="60"
+              formControlName="conemail" pattern=".+@.+\..+" />
+            <small class="text-danger" *ngIf="f.conemail.hasError('required') && f.conemail.touched">Please enter email
+              id.</small>
+            <small class="text-danger" *ngIf="f.conemail.invalid && f.conemail.errors?.pattern">
+              Email should be the real one!
+            </small>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="designation" class="label">Designation</label>
+            <input nbInput fullWidth type="text" [required]="true" class="form-control"
+            id="designation" placeholder="Designation" name="conDesignationId" maxlength="60" 
+            formControlName="conDesignationId"/>
+            <small class="text-danger" *ngIf="f.conDesignationId.hasError('required') && f.conDesignationId.touched">Please enter designation.</small>
+          </div>
+        </div>
+       </form>
+    </nb-card-body>
+  </nb-card>

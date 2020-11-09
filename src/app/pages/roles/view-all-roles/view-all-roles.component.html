@@ -1,0 +1,39 @@
+<nb-card>
+    <nb-card-header> Roles 
+      <button type="button" nbButton status="primary" class="float-right btn btn-primary" 
+          (click)="create()">Add </button>
+    </nb-card-header>
+    <nb-card-body>
+       <!-- <ng2-smart-table [settings]="dataGridSettings" [source]="dataGridSource" (create)="create()" (edit)="edit($event)"
+        (delete)="view($event)"></ng2-smart-table>  -->
+
+        <table class="table" >
+          <thead>
+          <tr >
+          <th scope="col"> Name</th>
+          <th scope="col">Organization Type</th>
+          <th scope="col">Module Count</th>
+          <th scope="col">Permission Count</th>
+          <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of rolesCount">
+          <td >{{item.roleName}}</td>
+          <td >{{item.orgTypeId}}</td>
+          <td >{{item.modulesCount}}</td>
+          <td >{{item.permissionCount}}</td>
+          <td>
+         
+          <button class="btn btn-sm btn-warning" (click)="view(item)"><i class="nb-compose" title="View"></i></button>
+          &nbsp;
+           <button class="btn btn-sm btn-primary" (click)="edit(item)"><i class="nb-compose" title="Update"></i></button>
+         
+          </td>
+          </tr>
+          
+    </tbody>
+    
+    </table> 
+    </nb-card-body>
+  </nb-card>

@@ -1,0 +1,65 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h5 class="page-title">Settings</h5>
+                        </li>
+                        <!-- <li class="breadcrumb-item active">Update Template</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>Update {{templateId===1?"Accept":"Reject"}} Referral Template</h2>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="col">
+                <div class="d-flex">
+                    <div class="col col-lg-6">
+                        <h4>Editor</h4>
+                    </div>
+                    <div class="col">
+                        <h4>Keys</h4>
+                    </div>
+                </div>
+                <div class="d-flex pt-3">
+                    <div class="col col-lg-6">
+                        <angular-editor id="editor" [placeholder]="'Enter text here...'" [(ngModel)]="template" [config]="editorConfig"></angular-editor>
+                    </div>
+                    <div class="col">
+                        <div class="row" *ngFor="let item of templateKeys | keyvalue">
+                            <div class="col">
+                                <div class="d-flex">
+                                    <div class="">{{item.key}} : </div>
+                                    <div class="btn btn-link pt-0" (click)="UpdateKeyinEditor(item.value)"> {{item.value}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col col-lg-6 text-center">
+                <button type="button" class="btn btn-success mr-3" (click)="SaveTemplate()">Save</button>
+                <button type="button" class="btn btn-danger" routerLink="/dashboard/providersettings">Cancel</button>
+            </div>
+        </div>
+        <div class="row pt-3" *ngIf="templateSaved">
+            <div class="col col-lg-6">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Template Saved Successfully.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

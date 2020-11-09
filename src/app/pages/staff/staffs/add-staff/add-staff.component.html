@@ -1,0 +1,181 @@
+<nb-card>
+    <nb-card-header>
+      <div class="row">
+        <div class="col-8">
+          
+
+          <span *ngIf="!editMode">Add New</span>
+          <span *ngIf="editMode">Edit</span>
+        </div>
+        <div class="label col-4 text-right" style="cursor: pointer">
+          <i class="ion-ios-arrow-back back" (click)="goBack()"> Back</i>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="medium">
+        <form class="form-horizontal" [formGroup]="staffForm"  autocomplete="off" (ngSubmit)="onSubmit()">
+          <div class="row" >
+          <div class="form-group offset-md-6 col-md-6" style="text-align: right;" >
+            <button nbButton status="primary" *ngIf="!editMode" [disabled]="staffForm.invalid">
+                <span *ngIf="!editMode">Save</span>
+            </button>
+            <!-- <button type="button" nbButton status="primary" class="btn btn-primary" (click)="createStaffLocation()">
+              Add Location</button> -->
+            
+            <button nbButton status="primary" *ngIf="editMode" [disabled]="staffForm.invalid">
+                <span *ngIf="editMode">Update</span> 
+            </button>
+            <button type="button" nbButton (click)="cancel()" status="danger">Cancel</button>
+          </div>
+          </div>
+
+          <div class="row" *ngIf="!editMode">
+            <!-- <div class="form-group col-md-4">
+              <label for="organization" class="label">Organization</label>
+              <ng-select [clearable]="false" appendTo="body"
+              placeholder="Choose Organization" (change)="loadLocations($event);"
+                 [items]="organizations" bindLabel="organisation_name" bindValue="organisation_id">
+             </ng-select>
+            </div> -->
+            <div class="form-group col-md-4">
+              <label for="location" class="label">Location</label>
+              <ng-select [clearable]="false" appendTo="body" placeholder="Choose Location" formControlName="organisation_location_id"
+               [items]="locations" bindLabel="locname" bindValue="organisation_location_id">
+             </ng-select>
+                <small class="text-danger" *ngIf="f.organisation_location_id.hasError('required')">Please enter Location.</small>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="editMode">
+            <!-- <div class="form-group col-md-4">
+              <label for="organization" class="label">Organization</label>
+             <p>{{orgName}}</p>
+            </div> -->
+            <div class="form-group col-md-4">
+              <label for="location" class="label">Location</label>
+                <p>{{locname}}</p>
+            </div>
+            <div class="form-group col-md-4" style="display: none;">
+              <label for="location" class="label">Location</label>
+              <ng-select [clearable]="false" appendTo="body" placeholder="Choose Location" formControlName="organisation_location_id"
+               [items]="locations" bindLabel="locname" bindValue="organisation_location_id">
+             </ng-select>
+                <small class="text-danger" *ngIf="f.organisation_location_id.hasError('required') && f.organisation_location_id.touched">Please enter postcode.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-4">
+              <label for="title" class="label">Title</label>
+              <input nbInput fullWidth [required]="true" class="form-control"
+                id="title" placeholder="Title" name="title" maxlength="60"  
+                formControlName="title" ng-pattern="/^[a-zA-Z\s]*$/"/>
+                <small class="text-danger" *ngIf="f.title.hasError('required') && f.title.touched">Please enter title.</small>
+                <small class="text-danger" *ngIf="f.title.hasError('pattern')">Please enter characters only.</small>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="firstname" class="label">First Name:</label>
+              <input nbInput fullWidth type="text" [required]="true" class="form-control"
+                id="firstname" placeholder="First Name" name="firstname" maxlength="160" 
+                formControlName="firstname"/>
+              <small class="text-danger" *ngIf="f.firstname.hasError('required') && f.firstname.touched">Please enter First name.</small>
+            </div>
+          <div class="form-group col-md-4">
+            <label for="surname" class="label">Sur Name</label>
+            <input nbInput fullWidth type="text" [required]="true" class="form-control"
+              id="surname" placeholder="Sur Name" name="surname" maxlength="60" 
+              formControlName="surname"/>
+              <small class="text-danger" *ngIf="f.surname.hasError('required') && f.surname.touched">Please enter surname.</small>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="mobile" class="label">Mobile</label>
+                <input nbInput fullWidth type="text" [required]="true" class="form-control"
+                  id="mobile" placeholder="Mobile" name="mobile" maxlength="11" minlength="10"
+                  formControlName="mobile" NumbersOnly="true"/>
+                  <small class="text-danger" *ngIf="f.mobile.hasError('required') && f.mobile.touched">Please enter Contact Person.</small>
+            <small class="text-danger" *ngIf="f.mobile.hasError('minlength')">Please enter minimum 10 digit Mobile number.</small>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="email" class="label">Email</label>
+                <input nbInput fullWidth type="email" class="form-control" id="email" placeholder="Email" 
+                [required]="true" maxlength="60" autocomplete="new-email"
+                formControlName="email" pattern=".+@.+\..+" />
+                <small class="text-danger" *ngIf="f.email.hasError('required') && f.email.touched">Please enter email id.</small>
+                <small class="text-danger" *ngIf="f.email.invalid && f.email.errors?.pattern">
+                     Email should be the real one!
+                </small>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="address" class="label">Address</label>
+                <textarea nbInput fullWidth class="form-control" id="address" [required]="true" maxlength="200"  name="address" 
+                placeholder="address" cols="45" rows="3" formControlName="address"></textarea>
+                <small class="text-danger" *ngIf="f.address.hasError('required') && f.address.touched">Please enter address.</small>
+              </div>
+        </div>
+        
+        <div class="row">
+          <div class="form-group col-md-4">
+              <label for="postcode" class="label">Postcode</label>
+              <input nbInput fullWidth type="text" [required]="true" class="form-control"
+                id="postcode" placeholder="Postcode" name="postcode" maxlength="5" minlength="3"
+                formControlName="postcode" NumbersOnly="true"/>
+               <small class="text-danger" *ngIf="f.postcode.hasError('required') && f.postcode.touched">Please enter postcode.</small>
+               <small class="text-danger" *ngIf="f.postcode.hasError('minLength') ">Please enter minimum 3 digit postcode.</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="state" class="label">State</label>
+            <!-- <nb-select placeholder="Choose State" fullWidth  formControlName="state">
+                <nb-option *ngFor="let data of states" value={{data.id}}>{{data.name}}</nb-option>
+            </nb-select> -->
+            <!-- <ng-select [clearable] = false appendTo="body" placeholder="Choose state" formControlName="state"
+               [items]="states" bindLabel="name" bindValue="id">
+            </ng-select> -->
+            <input nbInput fullWidth type="text" class="form-control" id="state" placeholder="State" [required]="true" 
+              formControlName="state" />
+            <small class="text-danger" *ngIf="f.state.hasError('required') && f.state.touched">Please enter state.</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="city" class="label">Town/City</label>
+            <input nbInput fullWidth type="text" class="form-control" id="city" placeholder="City" [required]="true" 
+              formControlName="city" />
+              <small class="text-danger" *ngIf="f.city.hasError('required') && f.city.touched">Please enter city.</small>
+          </div>
+        </div>
+          
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label for="password" class="label">Password</label>
+            <input nbInput fullWidth type="password" [required]="true" class="form-control" autocomplete="new-password"
+              id="password" placeholder="password" name="password" maxlength="60" 
+              formControlName="password"/>
+              <small class="text-danger" *ngIf="f.password.hasError('required') && f.password.touched">Please enter Password.</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="role" class="label">Role</label>
+            <!-- <nb-select placeholder="Choose Role" fullWidth  formControlName="role">
+                <nb-option *ngFor="let data of roles" value={{data.id}}>{{data.name}}</nb-option>
+            </nb-select> -->
+            <ng-select [clearable]="false" appendTo="body" placeholder="Choose Role" formControlName="role_id"
+               [items]="roles" bindLabel="roleName" bindValue="roleId">
+            </ng-select>
+            <small class="text-danger" *ngIf="f.role_id.hasError('required')">Role is required.</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="preference" class="label">Preferences</label>
+              <!-- <nb-select placeholder="Choose preference" fullWidth  formControlName="preferences">
+                <nb-option *ngFor="let data of preferences" value={{data}}>{{data}}</nb-option>
+              </nb-select> -->
+              <ng-select [clearable]="false" appendTo="body" placeholder="Choose preference"  formControlName="preference"
+                 [items]="preferences" bindLabel="name" bindValue="id">
+              </ng-select>
+              <small class="text-danger" *ngIf="f.preference.hasError('required') && f.preference.touched">Please enter postcode.</small>
+          </div>
+        </div>   
+
+        </form>
+    </nb-card-body>
+  </nb-card>

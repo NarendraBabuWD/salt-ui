@@ -1,0 +1,93 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Settings</h4>
+                        </li>
+                        <!-- <li class="breadcrumb-item bcrumb-1">
+                            <a routerLink="/pages/dashboard">
+                                <i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">{{IsAutoAccept?'Auto Accept':'Template Settings'}}</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>{{IsAutoAccept?'Auto Accept':'Template Settings'}}</h2>
+            </div>
+        </div>
+        <div class="row" *ngIf="!IsAutoAccept">
+            <div class="col d-flex">
+                <h6 class="pr-5">Accept Referral Template</h6>
+                <button class="btn btn-link" (click)="gotoUpdateTemplate(1)">Edit Template</button>
+                <button class="btn btn-link" (click)="gotoUpdateTemplate(1)">Update Template</button>
+            </div>
+        </div>
+        <div class="row" *ngIf="!IsAutoAccept">
+            <div class="col col-lg-5">
+                <div class="col pt-3 pb-3 border border-success">
+                    <div [innerHtml]="acceptTemplate">{{acceptTemplate}} </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5" *ngIf="!IsAutoAccept">
+            <div class="col d-flex">
+                <h6 class="pr-5">Reject Referral Template</h6>
+                <button class="btn btn-link" (click)="gotoUpdateTemplate(2)">Edit Template</button>
+                <button class="btn btn-link" (click)="gotoUpdateTemplate(1)">Update Template</button>
+            </div>
+        </div>
+        <div class="row" *ngIf="!IsAutoAccept">
+            <div class="col col-lg-5">
+                <div class="col pt-3 pb-3 border border-danger">
+                    <div [innerHtml]="rejectTemplate">
+                        {{rejectTemplate}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="IsAutoAccept">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <mat-slide-toggle class="example-margin" [(ngModel)]="checked" [color]="color" (ngModelChange)="UpdateAutoAccept()">
+                                Auto Accept Referral
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="checked">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            Please select the time after which you would like to auto accept the Referral Sent
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col">
+                            <div class="d-flex">
+                                <div style="padding-right: 15px;">Auto Accept in Minutes</div>
+                                <div>
+                                    <select class="form-control"
+                                     [(ngModel)]="autoAcceptAfterSeconds" (change)="onBlurMethod()"
+                                     >
+                                    <option [value]="min.value" *ngFor="let min of Minutes">
+                                        {{min.label}}
+                                    </option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

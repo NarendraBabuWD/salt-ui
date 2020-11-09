@@ -1,0 +1,33 @@
+<nb-card>
+    <nb-card-header> Accepted Referrals
+    </nb-card-header>
+    <nb-card-body>      
+  
+            
+      <table class="table" >
+        <thead>
+        <tr >
+            <th scope="col h11">Sno</th>
+            <th scope="col h11">Patient Name</th>
+            <th scope="col h11">Referral Sent By</th>
+            <th scope="col h11">Allied Health Name</th>
+            <th scope="col h11">Comments</th>
+            <th scope="col h11">Referral Accepted On</th>
+            <!-- <th scope="col"></th> -->
+        </tr>
+        </thead>
+         <tbody>
+            <tr class="trRow" *ngFor="let referral of acceptedReferralsArray; index as i">
+                <td>{{ i + 1 }}</td>
+                    <td>{{ referral.patientName }}</td>
+                    <td>{{ referral.refferalSent }}</td>
+                    <td>{{ referral.alliedHealthName }}</td>
+                    <td>{{ referral.comments }}</td>
+                    <td>{{ referral.referralRejectedOn }}</td>  
+                    <!-- <td><button (click)="viewReferral(referral)" class="btn btn-primary btn-sm">View</button></td> -->
+            </tr>
+  </tbody>  
+  
+  </table>
+    </nb-card-body>
+  </nb-card>

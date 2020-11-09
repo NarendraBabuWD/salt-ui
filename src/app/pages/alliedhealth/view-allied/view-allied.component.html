@@ -1,0 +1,32 @@
+<nb-card>
+    <nb-card-body>
+        <nb-layout>
+            <nb-layout-column style="background-color: white;">
+                <h6>Allied Health Users</h6>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th scope="col" style="text-align: center;">Actions</th>
+                    </tr>
+                </thead>
+                    <tr *ngFor="let provider of alliedHealthUsers; let i = index;">
+                        <td>{{ provider.provider.name }}</td>
+                        <td>{{ provider.provider.speciality }}</td>
+                        <td><a href="#">{{ provider.provider.email }}</a></td>
+                        <td>{{ provider.provider.address }}</td>
+                        <td>
+                            <div class="d-flex justify-content-around">
+                                <button class="btn btn-sm btn-primary" (click)="editLocation(item2)"><i class="nb-compose" title="Update"></i></button>
+                                <i (click)="deleteUser(provider)" class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+        </nb-layout-column>
+    </nb-layout>
+    </nb-card-body>
+</nb-card>

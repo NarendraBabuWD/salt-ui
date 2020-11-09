@@ -1,0 +1,160 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-8">
+        <span *ngIf="!editMode">Add New</span>
+        <span *ngIf="editMode">Edit</span>
+      </div>      
+    </div>
+  </nb-card-header>
+  <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="medium">
+      <form class="form-horizontal" [formGroup]="subscriptionForm"  autocomplete="off" (ngSubmit)="onSubmit()">
+        <div class="row" >
+        <div class="form-group offset-md-8 col-md-4" style="text-align: right;" >
+          <button nbButton status="primary" *ngIf="!editMode" [disabled]="subscriptionForm.invalid">
+              <span *ngIf="!editMode">Save</span>
+          </button>
+          <button nbButton status="primary" *ngIf="editMode" >
+              <span *ngIf="editMode">Update</span> 
+          </button>
+          <button nbButton type="button" (click)="cancel()" status="danger">Cancel</button>
+        </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label for="name" class="label">Name</label>
+            <input nbInput fullWidth type="text" [required]="true" class="form-control"
+              id="name" placeholder="Name" name="name" maxlength="60" 
+              formControlName="name"/>
+              <small class="text-danger" *ngIf="f.name.hasError('required') && f.name.touched">Please enter name.</small>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="organisation_type_id" class="label">Organisation Type:</label>
+            <ng-select [clearable]="false" appendTo="body" formControlName="organisation_type_id" (change)="loadModules($event.id);"
+            placeholder="Choose Organization type" 
+               [items]="orgTypes" bindLabel="name" bindValue="id">
+           </ng-select>
+           <small class="text-danger" *ngIf="f.organisation_type_id.hasError('required') && f.name.touched">Please select Organisation Type.</small>
+          </div>
+        <div class="form-group col-md-4">
+          <label for="surname" class="label">Preference</label>
+          <ng-select [clearable]="false" appendTo="body" formControlName="preference"
+          placeholder="Choose Preference" 
+          [items]="preferences" bindLabel="name" bindValue="id">
+         </ng-select>
+        </div>
+      </div>
+      
+      <div class="row">
+          <div class="form-group col-md-4">
+              <nb-checkbox status="success" [checked]="isFreeTrial" formControlName="trial" (change)="changeDuration($event)">Free Trial</nb-checkbox>                
+            </div>
+            <div class="form-group col-md-4">
+              <nb-checkbox status="success" formControlName="recommended">Mark as recommended ?</nb-checkbox>                
+            </div>
+      </div>
+
+      <!-- Duration -->
+      <label for="" class="label">Duration</label>
+       <div  *ngFor="let unit of duration.controls; let i=index" formArrayName="duration">
+        <div [formGroup]="duration.controls[i]" class="row">
+            <div class="form-group col-md-3">
+            <ng-select formControlName="duration" appendTo="body" placeholder="Choose Duration"
+                [items]="subscriptionDurations" bindLabel="name" bindValue="name">
+            </ng-select>     
+            <!-- <small class="text-danger" *ngIf="f.duration.required.hasError('required') && f.duration.touched">Duration is not required.</small> -->
+            </div>
+            <div class="form-group col-md-3">
+              <!-- <label>Cost</label> -->
+              <input nbInput fullWidth type="number" class="form-control control-height" placeholder="Cost"
+              formControlName="cost">    
+              <small class="text-danger" *ngIf="!costFree">Cost should be greater than 0, if it is not a free trial.</small>
+            </div>
+            <div class="form-group col-md-2" *ngIf="i == (0 || duration.controls.length -1)">
+              <button type="button" nbButton status="primary" class="btn btn-secondary" (click)="addDuration()"><nb-icon icon="plus"></nb-icon></button>
+            </div>
+        </div>
+      </div>
+      <br>
+      <!-- Role -->
+      <label for="" class="label"> Role</label>
+      <div  *ngFor="let unit of role.controls; let i=index" formArrayName="role">
+        <div [formGroup]="role.controls[i]" class="row">
+            <div class="form-group col-md-3">
+              <ng-select formControlName="roleid" appendTo="body" placeholder="Choose Role"
+              [items]="roles" bindLabel="roleName" bindValue="roleId">
+              </ng-select>      
+            <!-- <small class="text-danger" *ngIf="f.role.required.hasError('required') && f.duration.touched">Duration is not required.</small> -->
+
+            </div>
+            <div class="form-group col-md-3">
+              <!-- <label>Cost</label> -->
+              <input nbInput fullWidth type="text" class="form-control control-height" placeholder="Limits"
+              formControlName="limits">               
+            </div>
+            <div class="form-group col-md-2" *ngIf="i == (0 || role.controls.length -1)">
+              <button type="button" nbButton status="primary" class="btn btn-secondary" (click)="addRole()"><nb-icon icon="plus"></nb-icon></button>
+            </div>
+        </div>
+      </div>
+      
+      <!-- <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr class="d-flex">
+              <th class="col-1 ">#</th>
+              <th class="col-6">Role</th>
+              <th class="col-4">Limits</th>
+              <th class="col-1">Action</th>
+            </tr>
+          </thead>
+          <tbody formArrayName="role">
+            <tr class="d-flex" [formGroupName]="i" *ngFor="let unit of role.controls; let i=index">
+              <td class="col-1"> {{i + 1}}</td>
+              <td class="col-6 control-padding">
+                  <ng-select formControlName="roleid" appendTo="body" placeholder="Choose Account"
+                  [items]="roles" bindLabel="roleName" bindValue="roleId">
+                  </ng-select>
+                </td>
+              <td class="col-4 control-padding">
+                <input nbInput fullWidth type="text" class="form-control control-height" placeholder="Limits"
+                  formControlName="limits">
+              </td>
+              <td class="col-1">
+                <nb-actions size="small">
+                  <nb-action icon="trash-2-outline" (click)="removeRole(unit.value, i)"></nb-action>
+                </nb-actions>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="btn btn-secondary" (click)="addRole()"> Add New </button>
+      </div> -->
+       <br />
+
+      <!-- <div formArrayName="mdl">
+          <tr class="d-flex" [formGroupName]="i" *ngFor="let unit of mdl.controls; let i=index">
+            <td class="col-1"  *ngFor="let perm of modules"> 
+                  <nb-checkbox status="success" (onCreate)="getModule(unit.id)" data-id="{{perm.id}}" formControlName="moduleid"> {{perm.name}}</nb-checkbox>                
+            </td>
+          </tr>
+        </div> -->
+
+        <div class="form-group col-md-12">
+          <p>SELECT MODULE</p>
+        </div>
+        <div class="form-group row" style="border: 1px solid #cccccc;margin-left: 15px;">
+          <div  class="col-md-2" *ngFor="let mod of modules" style="padding-top: 5px;">
+            <nb-checkbox status="success" (change)="addModule($event)" checked={{mod.status}}  data-id="{{mod.moduleid}}" > {{mod.modulename}}</nb-checkbox>                
+          <!-- <small class="text-danger" *ngIf="moduleMandatory">Please select at least one module.</small> -->
+        </div>
+        </div>
+      <div class="form-group col-md-12">
+          <label for="description" class="label">Description</label>
+          <textarea nbInput fullWidth class="form-control" id="description" maxlength="200"  name="description" 
+          placeholder="Description" cols="45" rows="3" formControlName="description"></textarea>
+      </div>
+      </form>
+  </nb-card-body>
+</nb-card>

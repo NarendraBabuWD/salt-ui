@@ -1,0 +1,92 @@
+<nb-card>
+  <nb-card-header>
+   <div class="row">
+       <div class="col-6">
+           <span>View subscription</span>
+       </div>
+       <div class="label col-6 text-right" style="cursor: pointer">
+       <!-- <i class="ion-ios-arrow-back back" (click)="goBack()"> Back</i> -->
+         <!-- <button nbButton status="primary"  (click)="edit()" style="margin-right: 5px;">
+             Edit
+         </button> -->
+         <button nbButton (click)="cancel()" status="danger">Cancel</button>
+       </div>
+   </div>
+  </nb-card-header>
+   <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="medium"> 
+       <div class="row">
+       <div class="form-group col-md-3">
+         <label class="label">Name</label>
+         <p>{{subscriptionDetails.name}}</p>
+       </div>
+       <div class="form-group col-md-3">
+         <label class="label">Description:</label>
+         <p>{{subscriptionDetails.description}}</p>
+       </div>
+       <div class="form-group col-md-3">
+         <label class="label">Trial</label>
+         <p>{{subscriptionDetails.trail}}</p>
+       </div>
+       <div class="form-group col-md-3">
+         <label  class="label">Status</label>
+         <p>{{subscriptionDetails.status}}</p>
+       </div>
+       </div>
+
+       <div class="row">
+       <div class="form-group col-md-3">
+         <label class="label">Organisation_type_id</label>
+         <p>{{subscriptionDetails.organisation_type_id}}</p>
+       </div>
+       <div class="form-group col-md-3">
+         <label class="label">Recommended</label>
+         <p>{{subscriptionDetails.recommended}}</p>
+       </div>
+       <div class="form-group col-md-3">
+         <label class="label">Preference</label>
+         <p>{{subscriptionDetails.preference}}</p>
+       </div>
+       </div>
+
+       <div class="row">
+         <div class="form-group col-md-3">
+           <label class="label">Duration</label>
+         </div>
+         <div class="form-group col-md-3">
+           <label class="label">Cost</label>
+         </div>
+       </div>
+       <div class="row" *ngFor="let cost of subscriptionDetails.cst">
+           <div class="form-group col-md-3">
+               <p>{{cost.duration}}</p>
+           </div>
+           <div class="form-group col-md-3">
+               <p>{{cost.subscriptioncost}}</p>
+           </div>
+       </div>
+
+       <div class="row">
+           <div class="form-group col-md-3">
+               <label class="label">Module</label>
+               <div  *ngFor="let module of subscriptionDetails.mdl">{{module.modulename}}</div>
+           </div>
+       </div>
+
+       <div class="row">
+         <div class="form-group col-md-3">
+           <label class="label">Role name</label>
+         </div>
+         <div class="form-group col-md-3">
+           <label class="label">Limits</label>
+         </div>
+       </div>
+       <div class="row" *ngFor="let role of subscriptionDetails.rle">
+           <div class="form-group col-md-3">
+               <p>{{role.rolename}}</p>
+           </div>
+           <div class="form-group col-md-3">
+               <p>{{role.limit}}</p>
+           </div>
+       </div>
+   </nb-card-body>
+</nb-card>

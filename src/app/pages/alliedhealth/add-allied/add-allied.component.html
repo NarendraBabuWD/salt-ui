@@ -1,0 +1,59 @@
+<nb-card>
+    <nb-card-body>
+        <nb-layout>
+            <nb-layout-column>
+                <h5>Add Allied Health</h5>
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="row mt-5">
+                        <div class="col">
+                            <nb-select 
+                                shape="rectangle"
+                                fullWidth="true"
+                                name="title" 
+                                id="title"
+                                placeholder="Title *"
+                                formControlName="title" >
+                                <!-- <nb-option value="0">Select Title</nb-option> -->
+                                <nb-option [value]="tit" *ngFor="let tit of titles; let i = index">{{ tit }}</nb-option>
+                            </nb-select>
+                        </div>
+                        <div class="col">
+                            <input nbInput size="small" formControlName="firstName" shape="rectangle" fullWidth="true" name="firstName" id="firstName" placeholder="First Name *"/>
+                        </div>
+                        <div class="col">
+                            <input nbInput size="small" formControlName="lastName" shape="rectangle" fullWidth="true" name="lastName" id="lastName" placeholder="Last Name *"/>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col">
+                            <input nbInput shape="rectangle" formControlName="email" fullWidth="true" type="email" name="email" id="email" placeholder="Email *">
+                        </div>
+                        <div class="col">
+                            <input nbInput shape="rectangle" formControlName="phone" fullWidth="true" type="text" name="phone" id="phone" placeholder="Contact Number *">
+                        </div>
+                        <div class="col">
+                            <textarea nbInput shape="rectangle" formControlName="address" fullWidth="true" name="address" id="address" rows="2" placeholder="Address *"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col">
+                            <input nbInput shape="rectangle" formControlName="pincode" fullWidth="true" type="number" name="pincode" id="pincode" placeholder="Pincode *">
+                        </div>
+                        <div class="col">
+                            <nb-select shape="rectangle" formControlName="catagory" fullWidth="true" id="catagory" placeholder="Catagoty *">
+                                <nb-option [value]="cat" *ngFor="let cat of catagories; let i = index">{{ cat }}</nb-option>
+                            </nb-select>
+                        </div>
+                        <div class="col">
+
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <button nbButton size="medium" status="primary" hero="true" type="submit">Submit</button>
+                        <button class="ml-3" nbButton size="medium" hero="true" type="reset">Cancel</button>
+                    </div>
+                </form>
+            </nb-layout-column>
+        </nb-layout>
+    </nb-card-body>
+</nb-card>

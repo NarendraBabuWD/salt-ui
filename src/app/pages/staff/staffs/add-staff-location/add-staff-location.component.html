@@ -1,0 +1,57 @@
+<nb-card>
+    <nb-card-header>
+      <div class="row">
+        <div class="col-8">
+          <span>Add New</span>
+         </div>
+        <div class="label col-4 text-right" style="cursor: pointer">
+          <i class="ion-ios-arrow-back back" (click)="goBack()"> Back</i>
+        </div>                               
+      </div>
+    </nb-card-header>
+    <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="medium">
+        <form class="form-horizontal" [formGroup]="staffLocationForm"  autocomplete="off" (ngSubmit)="onSubmit()">
+          <div class="row" >
+            <div class="form-group offset-md-8 col-md-4" style="text-align: right;" >
+                <button nbButton status="primary">
+                    <span>Save</span>
+                </button>
+            <button nbButton (click)="cancel()" status="danger">Cancel</button>
+          </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="form-group col-md-4">
+              <label for="organization" class="label">Organization</label>
+              <ng-select [clearable]="false" appendTo="body" placeholder="Choose Organization" 
+                (change)="loadLocations($event);"
+                 [items]="organizations" bindLabel="organisation_name" bindValue="organisation_id">
+             </ng-select>
+            </div> -->
+            <div class="form-group col-md-4">
+              <label for="location" class="label">Location</label>
+              <ng-select [clearable]="false" appendTo="body" placeholder="Choose Location" 
+               formControlName="organisation_location_id"
+               [items]="locations" bindLabel="locname" bindValue="organisation_location_id">
+             </ng-select>
+                <small class="text-danger" *ngIf="f.organisation_location_id.hasError('required') && f.organisation_location_id.touched">Please select location.</small>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="role" class="label">Role</label>
+                <ng-select [clearable]="false" appendTo="body" placeholder="Choose Role" formControlName="role_id"
+                   [items]="roles" bindLabel="roleName" bindValue="roleId">
+                </ng-select>
+                <small class="text-danger" *ngIf="f.role_id.hasError('required') && f.role_id.touched">Please select role.</small>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="staffs" class="label">Staff</label>
+                <ng-select [clearable]="false" appendTo="body" placeholder="Choose Staff" formControlName="staff_id"
+                   [items]="staffs" bindLabel="firstname" bindValue="id">
+                </ng-select>
+                <small class="text-danger" *ngIf="f.staff_id.hasError('required') && f.staff_id.touched">Please select staff.</small>
+              </div>
+          </div>
+          
+        </form>
+    </nb-card-body>
+  </nb-card>

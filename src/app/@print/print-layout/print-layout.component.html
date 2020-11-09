@@ -1,0 +1,24 @@
+ <table class="table">
+  <thead *ngIf="showHeaderFooter"><tr><td>
+    <div class="header-space"></div>
+  </td></tr></thead>
+  <tbody><tr><td>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </td></tr></tbody>
+  <tfoot *ngIf="showHeaderFooter"><tr><td>
+    <div class="footer-space"></div>
+  </td></tr></tfoot>
+</table>
+
+<div *ngIf="showHeaderFooter" class="header">
+  {{organizationName}}
+  <br />
+  {{reportHeaderText}}
+</div>
+<div *ngIf="showHeaderFooter" class="footer">  
+  {{reportFooterText}}
+  <br/>
+  {{address}}
+</div>
