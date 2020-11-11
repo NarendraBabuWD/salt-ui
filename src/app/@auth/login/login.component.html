@@ -21,14 +21,14 @@
         </nb-alert>
 
         <div class="form-control-group">
-          <label class="sr-only label" for="input-email"> Orginisation:</label>
+          <label class="sr-only label" for="input-email"> Organisation:</label>
           <input nbInput fullWidth [(ngModel)]="user.domain" #domain="ngModel" name="domain" id="input-domain"
             placeholder="Orginisation" autofocus
             [status]="domain.dirty ? (domain.invalid  ? 'danger' : 'success') : ''" [required]="true"
             [attr.aria-invalid]="domain.invalid && domain.touched ? true : null">
           <ng-container *ngIf="domain.invalid && domain.touched">
             <p class="caption status-danger" *ngIf="domain.errors?.required">
-              Orginisation name is required!
+              Organisation name is required!
             </p>
           </ng-container>
 
