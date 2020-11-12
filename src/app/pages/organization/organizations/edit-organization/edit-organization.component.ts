@@ -78,9 +78,10 @@ export class EditOrganizationComponent implements OnInit {
                           });
         this.service.postJson('Organisation/updateorganisation' , postData).subscribe(
           (response) => {
-            this.editOrganizationForm.reset();
+            // this.editOrganizationForm.reset();
             this.loading = false;
             this.toastr.success('Organization Updated Successfully');
+            this.location.back();
           },
           (error) => {
             this.loading = false;

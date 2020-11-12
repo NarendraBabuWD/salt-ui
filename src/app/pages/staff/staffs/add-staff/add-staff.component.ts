@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpService } from './../../../../@core/services/http.service';
 import { ToastrService } from '../../../../@theme/components/toaster/toastr.service';
-import { EnumsService } from 'app/@core/data/enums.service';
+import { EnumsService } from '../../../../@core/data/enums.service';
 import { Location } from '@angular/common';
 
 @Component({
@@ -20,6 +20,7 @@ export class AddStaffComponent implements OnInit, OnDestroy {
   staffId: any;
   loading = false;
   states: any;
+  tit:any;
   roles: any;
   preferences: any = [];
   locations: any;
@@ -35,6 +36,7 @@ export class AddStaffComponent implements OnInit, OnDestroy {
       this.orgName = this.enums.orgName;
       this.locname = this.enums.locname;
       this.locationId = this.enums.locationId;
+      this.tit=this.enums.titles;
 
       this.organizationId = localStorage.getItem("organisationId");
       //this.loadOrganizations();

@@ -32,7 +32,7 @@
           <div class="form-group col-md-4">
             <label for="organisation_type_id" class="label">Organisation Type:</label>
             <ng-select [clearable]="false" appendTo="body" formControlName="organisation_type_id" (change)="loadModules($event.id);"
-            placeholder="Choose Organization type" 
+            placeholder="Choose Organisation type" 
                [items]="orgTypes" bindLabel="name" bindValue="id">
            </ng-select>
            <small class="text-danger" *ngIf="f.organisation_type_id.hasError('required') && f.name.touched">Please select Organisation Type.</small>

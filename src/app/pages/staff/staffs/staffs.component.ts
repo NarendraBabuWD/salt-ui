@@ -212,9 +212,25 @@ export class StaffsComponent  {
     }
     
   confirmDeactivate(data: any) {
-    this.dialogService.open(ConfirmDeleteComponent, { hasBackdrop: false,
-    context:{ title:'Deactivate', data:'Are you sure, You want to deactivate this staff?'} })
-    .onClose.subscribe((res) => {
+    // this.dialogService.open(ConfirmDeleteComponent, { hasBackdrop: false,
+    // context:{ title:'Deactivate', data:'Are you sure, You want to deactivate this staff?'} })
+    // .onClose.subscribe((res) => {
+      let dialogTitle: any = '';
+      let dialogMessage: any = '';
+      let status: any = '';
+      if(data.status === "Deactive"){ // it is active , make deactive
+        dialogTitle = 'Deactivate Organisation';
+        dialogMessage = 'Are you sure , you want to Activate this staff?'
+        status = 2;
+      }
+      else{ // it is deactive, make active
+        dialogTitle = 'Activate Organisation';
+        dialogMessage = 'Are you sure , you want to Deactivate this staff?'
+        status = 1;
+      }
+      this.dialogService.open(ConfirmDeleteComponent, { hasBackdrop: true , 
+        context: {title: dialogTitle, data: dialogMessage,} })
+        .onClose.subscribe((res) => {
       if (res == 'delete') {
         let actById = { id: data.id, updated_by:1 };
         this.service.post('Staff/deactivatestaff', actById,null).subscribe(
@@ -222,7 +238,7 @@ export class StaffsComponent  {
             const index = this.staffs.findIndex(obj => obj.id = data.id);
             this.staffs[index].status = "Deactive";
             this.dataGridSource.load(this.staffs);
-            this.toastr.success('Staff Deactivated successfully');
+            this.toastr.success(response.message);
           },
           (error) => {
             this.toastr.error(error.error);

@@ -8,7 +8,7 @@
         <div class="form-group col-md-3">
             <label for="organisation_type_id" class="label">Organisation Type:</label>
             <ng-select [clearable]="false" appendTo="body" (change)="loadSubscriptions($event);"
-            placeholder="Choose Organization type" 
+            placeholder="Choose Organisation type" 
                [items]="orgTypes" bindLabel="name" bindValue="id">
            </ng-select>
           </div>
@@ -22,7 +22,7 @@
         <thead>
         <tr >
         <th scope="col">Subscription Name</th>
-        <th scope="col">Organization Type</th>
+        <th scope="col">Organisation Type</th>
         <th scope="col">Description</th>
         <th scope="col">Trail</th>
         <th scope="col">Action</th>

@@ -26,12 +26,12 @@
         
           <div class="row">
               <div class="form-group col-md-4">
-                  <label for="organisation_type_id" class="label">Organization type</label>
+                  <label for="organisation_type_id" class="label">Organisation type</label>
                   <ng-select [clearable]="false" formControlName="organisation_type_id" appendTo="body" 
-                   placeholder="Choose Organization type" (change)="loadPermissions($event);"
+                   placeholder="Choose Organisation type" (change)="loadPermissions($event);"
                       [items]="orgTypes" bindLabel="name" bindValue="id">
                   </ng-select>
-                  <small class="text-danger" *ngIf="f.organisation_type_id.hasError('required') && f.organisation_type_id.touched">Please enter Organization type.</small>
+                  <small class="text-danger" *ngIf="f.organisation_type_id.hasError('required') && f.organisation_type_id.touched">Please enter Organisation type.</small>
                 </div> 
          
               <div class="form-group col-md-4"  *ngIf="roleModules.length!=0">
@@ -47,7 +47,7 @@
           </div>
           <br/>
           <div *ngIf="roleModules.length==0" class="alert alert-success box-msg" role="alert">
-            Please Select Organization type to Add Permissions
+            Please Select Organisation type to Add Permissions
     </div> 
           <div class="row"  *ngIf="roleModules.length!=0">
             

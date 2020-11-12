@@ -44,7 +44,7 @@ export class PagesComponent {
 
         this.MENU_ITEMS = [
           {
-            title: 'Owner Dashboard',
+            title: 'Dashboard',
             icon: 'home-outline',
             link: '/owner/ownerDashboard',
             
@@ -61,19 +61,15 @@ export class PagesComponent {
             link: '/owner/staff/all'
           },
           {
-            title: 'Organisation',
+            title: 'Organisations',
             icon: 'edit-2-outline',
-            children: [
-              {
-                title: 'Organisations',
-                link: '/owner/organization/all',
-              },
-              {
-                title: 'Locations',
-                link: '/owner/organization/locations',
-              },
-            ],
+            link: '/owner/organization/all',
           },
+          // {
+          //       title: 'Locations',
+          //     icon: 'edit-2-outline',
+          //     link: '/owner/organization/locations',
+          //  },
         
           {
             title: 'Subscription',

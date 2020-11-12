@@ -36,7 +36,7 @@ export class EnumsService {
     ];
     
     orgTypes: any = [
-        { id: 1, name: 'Owner'},
+        // { id: 1, name: 'Owner'},
         { id: 2, name: 'Practice' },
         { id: 3, name: 'Allied'},
         { id: 4, name: 'Specialist'},
@@ -135,6 +135,15 @@ export class EnumsService {
         { id: 6, name: 'Victoria'},
         { id: 7, name: 'Western Australia'},
     ];
+
+    titles:any=[
+        { title:'Mr.' },
+        { title:'Miss' },
+        { title:'Ms.' },
+        { title:'Dr.' },
+        { title:'Prof.' },
+        { title:'Other' },
+     ];
 
     organizations: any = [
         {

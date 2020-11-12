@@ -115,26 +115,29 @@
         <div class="row">
           <div class="form-group col-md-4">
             <label for="contitle" class="label">Title</label>
-            <input nbInput fullWidth type="text" [required]="true" class="form-control"
+            <nb-select placeholder="Choose Title" fullWidth  formControlName="contitle">
+              <nb-option *ngFor="let titles of ttl" value={{titles.title}}>{{titles.title}}</nb-option>
+          </nb-select>
+            <!-- <input nbInput fullWidth type="text" [required]="true" class="form-control"
               id="title" placeholder="Contact Title" name="ContactTitle" maxlength="160" 
-              formControlName="contitle" pattern="^[a-zA-Z \-\']+"/>
-              <small class="text-danger" *ngIf="f.contitle.hasError('required') && f.contitle.touched">Please enter Title.</small>
-              <small class="text-danger" *ngIf="f.contitle.hasError('pattern')">Please enter characters only.</small>
+              formControlName="contitle"/> -->
+              <small class="text-danger" *ngIf="f.contitle.hasError('required') && f.contitle.touched">Please select Title.</small>
+              <!-- <small class="text-danger" *ngIf="f.contitle.hasError('pattern')">Please enter characters only.</small> -->
           </div>
   
           <div class="form-group col-md-4">
             <label for="conname" class="label">Name</label>
             <input nbInput fullWidth type="text" [required]="true" class="form-control"
-              id="conname" placeholder="Contact Name" name="conname" maxlength="160" 
+              id="conname" placeholder="Contact Name" CharactersOnly="true" name="conname" maxlength="160" 
               formControlName="conname"/>
             <small class="text-danger" *ngIf="f.conname.hasError('required') && f.conname.touched">Please enter  Contact Name.</small>
           </div>
   
           <div class="form-group col-md-4">
-            <label for="conphone" class="label">Phone jwj</label>
-            <input nbInput fullWidth type="number" [required]="true" class="form-control"
-              id="conphone" placeholder="Contact phone" name="conphone" minlength="10" maxlength="12" 
-              formControlName="conphone"/>
+            <label for="conphone" class="label">Phone</label>
+            <input nbInput fullWidth type="text" [required]="true" class="form-control"
+              id="conphone" placeholder="Contact phone" name="conphone" minlength="10" maxlength="11" 
+              formControlName="conphone" NumbersOnly="true"/>
             <small class="text-danger" *ngIf="f.conphone.hasError('required') && f.conphone.touched">Please enter phone name.</small>
           <small class="text-danger" *ngIf="f.conphone.hasError('minlength')">Please enter minimum 10 digit phone number.</small>
 

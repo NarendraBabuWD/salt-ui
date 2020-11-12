@@ -28,10 +28,10 @@
         <div class="row">
           <div class="form-group col-md-4">
             <label for="organisation_type_id" class="label">Organisation type</label>
-            <nb-select placeholder="Choose Organization Type" fullWidth  formControlName="organisation_type_id">
+            <nb-select placeholder="Choose Organisation Type" fullWidth  formControlName="organisation_type_id">
                 <nb-option *ngFor="let data of orgTypes" value={{data.id}}>{{data.name}}</nb-option>
             </nb-select>
-            <small class="text-danger" *ngIf="f.organisation_type_id.hasError('required') && f.organisation_type_id.touched">Please enter Organization Type.</small>
+            <small class="text-danger" *ngIf="f.organisation_type_id.hasError('required') && f.organisation_type_id.touched">Please enter Organisation Type.</small>
           </div>
           <div class="form-group col-md-4">
             <label for="organisation_name" class="label">Organisation Name:</label>
@@ -69,7 +69,7 @@
           </div>
           <div class="form-group col-md-4">
             <label for="phone" class="label">Organisation Contact Number</label>
-            <input nbInput fullWidth type="number" [required]="true" class="form-control" id="phone" maxlength="11" minlength="10"
+            <input nbInput fullWidth type="text" [required]="true" class="form-control" id="phone" maxlength="11" minlength="10"
              placeholder="Organization Contact" name="phone"  formControlName="phone" NumbersOnly="true"/>
               <!-- <small class="text-danger" *ngIf="f.phone.hasError('required') && f.phone.touched && f.phone.hasError('maxlength') && f.phone.hasError('minlength')">Please enter Contact phone .</small> -->
               <small class="text-danger" *ngIf="f.phone.hasError('required') && f.phone.touched">Please enter valid phone number.</small>
@@ -142,12 +142,9 @@
           </div>
           <div class="form-group col-md-4">
             <label for="locstate" class="label">State</label>
-            <input nbInput fullWidth type="text" [required]="true" class="form-control"
-              id="locstate" placeholder="State" name="locstate" maxlength="60" 
-              formControlName="locstate" /> 
-            <!-- <nb-select placeholder="Choose State" fullWidth  formControlName="locstate">
-                <nb-option *ngFor="let data of states" value={{data.id}}>{{data.name}}</nb-option>
-            </nb-select> -->
+            <nb-select placeholder="Choose State" fullWidth  formControlName="locstate">
+                <nb-option *ngFor="let data of states" value={{data.id}}>{{data.stateName}}</nb-option>
+            </nb-select>
             <small class="text-danger" *ngIf="f.locstate.hasError('required') && f.locstate.touched">Please enter state.</small>
           </div>
           <div class="form-group col-md-4">
@@ -164,11 +161,14 @@
         <div class="row" >
           <div class="form-group col-md-4">
             <label for="contitle" class="label">Title</label>
-            <input nbInput fullWidth type="text" [required]="true" class="form-control"
+            <nb-select placeholder="Choose Title" fullWidth  formControlName="contitle">
+              <nb-option *ngFor="let titles of ttl" value={{titles.title}}>{{titles.title}}</nb-option>
+          </nb-select>
+            <!-- <input nbInput fullWidth type="text" [required]="true" class="form-control"
               id="title" placeholder="Contact Title" name="ContactTitle" maxlength="160" 
-              formControlName="contitle"/>
-              <small class="text-danger" *ngIf="f.contitle.hasError('required') && f.contitle.touched">Please enter Title.</small>
-              <small class="text-danger" *ngIf="f.contitle.hasError('pattern')">Please enter characters only.</small>
+              formControlName="contitle"/> -->
+              <small class="text-danger" *ngIf="f.contitle.hasError('required') && f.contitle.touched">Please select Title.</small>
+              <!-- <small class="text-danger" *ngIf="f.contitle.hasError('pattern')">Please enter characters only.</small> -->
           </div>
   
           <div class="form-group col-md-4">

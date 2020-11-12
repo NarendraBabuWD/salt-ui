@@ -23,6 +23,7 @@ export class AddLocationComponent implements OnInit, OnDestroy {
   timeZones: any;
   orgtypeId: any;
   orgTypes: any;
+  ttl:any;
   public locationEditForm: FormGroup;
   selectedItem: number;
   selectedOrg: any;
@@ -32,6 +33,7 @@ export class AddLocationComponent implements OnInit, OnDestroy {
       // this.states = this.enums.states;
       this.timeZones = this.enums.timeZone;
       this.states=this.enums.state;
+      this.ttl=this.enums.titles;
       this.orgTypes = this.enums.orgTypes;
   }
 
@@ -57,7 +59,7 @@ export class AddLocationComponent implements OnInit, OnDestroy {
         locpostcode: ['', [Validators.required]],
         locstate: ['', [Validators.required]],
         loctimezone: ['', [Validators.required]],
-        contitle:['',Validators.pattern('^[a-zA-Z \-\']+')],
+        contitle:['',[Validators.required]],
         conname: ['', [Validators.required]],
         conphone: ['', [Validators.required,Validators.minLength,Validators.maxLength]],
         conemail: ['', [Validators.required]],
@@ -109,7 +111,7 @@ export class AddLocationComponent implements OnInit, OnDestroy {
     if (this.locationForm.valid == true || this.locationEditForm.valid == true) {
       if (this.editMode == false) {
         // this.organizationId = this.enums.OrganizationId;
-        postData = JSON.stringify({organisation_id: this.selectedOrg, ...formData, created_by:1});
+        postData = JSON.stringify({organisation_id: this.selectedOrg, ...formData, created_by:1,status:1});
         console.log(postData);
         this.service.postJson('Organisation/createOrganisationlocation', postData).subscribe(
           (response) => {
@@ -141,7 +143,7 @@ export class AddLocationComponent implements OnInit, OnDestroy {
             this.editMode = true;
             this.loading = false;
             this.toastr.success(response.message);
-
+// this.loadLocation(this.locationId);
             this.cancel();
           },
           (error) => {

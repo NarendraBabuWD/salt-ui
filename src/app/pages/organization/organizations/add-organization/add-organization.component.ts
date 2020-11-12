@@ -20,6 +20,7 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
   locationId: any;
   loading = false;
   states: any;
+  ttl:any;
   timeZones: any;
   orgtypeId: any;
   orgTypes: any;
@@ -27,7 +28,8 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private route: ActivatedRoute, private service: HttpService,
     private toastr: ToastrService, private fb: FormBuilder,private enums: EnumsService,private location:Location) {
-      this.states = this.enums.states;
+      this.states = this.enums.state;
+      this.ttl=this.enums.titles;
       this.timeZones = this.enums.timeZone;
       this.orgTypes = this.enums.orgTypes;
   }
@@ -85,9 +87,9 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
         locpostcode: ['', [Validators.required,Validators.maxLength,Validators.minLength]],
         locstate: ['', [Validators.required]],
         loctimezone: ['', [Validators.required]],
-        contitle:['',Validators.pattern('^[a-zA-Z \-\']+')],
+        contitle:['',[Validators.required]],
         conname: ['', [Validators.required]],
-        conphone: ['', [Validators.required]],
+        conphone: ['', [Validators.required,Validators.minLength,Validators.maxLength]],
         conemail: ['', [Validators.required]],
         conDesignationId: ['', [Validators.required]],
       });
@@ -99,7 +101,7 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
       trading_name: [''],
       abn: ['', [Validators.required]],
       email: [''],
-      phone: [''],
+      phone: ['',[Validators.minLength,Validators.maxLength]],
     });
 
   }
