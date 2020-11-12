@@ -35,6 +35,7 @@ export class AddStaffComponent implements OnInit, OnDestroy {
       this.preferences = this.enums.preferences;
       this.orgName = this.enums.orgName;
       this.locname = this.enums.locname;
+      this.states=this.enums.state;
       this.locationId = this.enums.locationId;
       this.tit=this.enums.titles;
 
@@ -55,9 +56,7 @@ export class AddStaffComponent implements OnInit, OnDestroy {
       this.staffForm = this.fb.group({
         organisation_location_id:[''],
         // title: ['', Validators.compose([Validators.required,Validators.pattern('^[a-zA-Z \-\']+')])],
-        title: [ '',[Validators.required,Validators.pattern('^[a-zA-Z ]*$')
-          ]
-        ],
+        title: [ '',[Validators.required]],
         firstname: ['', [Validators.required]],
         surname: [''],
         mobile: ['', [Validators.required,Validators.minLength]],

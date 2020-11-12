@@ -52,7 +52,7 @@ export class OrganizationsComponent  {
           type: 'string',
         },
         name: {
-          title: 'Organization Type',
+          title: 'Organisation Type',
           type: 'string',
         },
         trading_name: {

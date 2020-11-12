@@ -43,6 +43,12 @@ export class ViewOrganizationComponent implements OnInit {
     });
   }
 
+  goToEdtOrg(){
+    this.router.navigate(['/pages/organization/edit'], { queryParams: { id: this.orgId } });
+  }
+
+
+
   loadOrgDetails(id:any) {
     let orgById = {  organisation_id: id };
     this.service.post('Organisation/getOrganisation', orgById, null).subscribe(

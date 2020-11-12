@@ -67,11 +67,10 @@
           <div class="row">
             <div class="form-group col-md-4">
               <label for="title" class="label">Title</label>
-              <input nbInput fullWidth [required]="true" class="form-control"
-                id="title" placeholder="Title" name="title" maxlength="60"  
-                formControlName="title" ng-pattern="/^[a-zA-Z\s]*$/"/>
-                <small class="text-danger" *ngIf="f.title.hasError('required') && f.title.touched">Please enter title.</small>
-                <small class="text-danger" *ngIf="f.title.hasError('pattern')">Please enter characters only.</small>
+                <nb-select placeholder="Choose Title" fullWidth  formControlName="title">
+                  <nb-option *ngFor="let titles of tit" value={{titles.title}}>{{titles.title}}</nb-option>
+              </nb-select>
+              <small class="text-danger" *ngIf="f.title.hasError('required') && f.title.touched">Please select title.</small>
             </div>
             <div class="form-group col-md-4">
               <label for="firstname" class="label">First Name:</label>
@@ -129,7 +128,7 @@
           <div class="form-group col-md-4">
             <label for="state" class="label">State</label>
             <nb-select placeholder="Choose State" fullWidth id="state" formControlName="state">
-                <nb-option *ngFor="let title of tit" value={{title.title}}>{{title.title}}</nb-option>
+                <nb-option *ngFor="let st of states" value={{st.stateName}}>{{st.stateName}}</nb-option>
             </nb-select>
             <!-- <ng-select [clearable] = false appendTo="body" placeholder="Choose state" formControlName="state"
                [items]="states" bindLabel="name" bindValue="id">
