@@ -23,7 +23,7 @@
         <div class="form-control-group">
           <label class="sr-only label" for="input-email"> Organisation:</label>
           <input nbInput fullWidth [(ngModel)]="user.domain" #domain="ngModel" name="domain" id="input-domain"
-            placeholder="Orginisation" autofocus
+            placeholder="Organisation" autofocus [readonly]="isReadOnly"
             [status]="domain.dirty ? (domain.invalid  ? 'danger' : 'success') : ''" [required]="true"
             [attr.aria-invalid]="domain.invalid && domain.touched ? true : null">
           <ng-container *ngIf="domain.invalid && domain.touched">
@@ -58,7 +58,7 @@
             [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''" [required]="true"
             [attr.aria-invalid]="password.invalid && password.touched ? true : null">
           <ng-container *ngIf="password.invalid && password.touched ">
-            <small class="text-danger" *ngIf="password.errors?.required">
+            <small class="caption status-danger" *ngIf="password.errors?.required">
               Password is required!
             </small>
           </ng-container>

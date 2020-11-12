@@ -6,6 +6,7 @@ let mediaBaseUrl = '';
 
 if (environment.production) {
 //    serviceApiBaseUrl = 'http://localhost:19323/';
+//    serviceApiBaseUrl = 'http://23.101.222.132/salt/';
      serviceApiBaseUrl = 'http://13.75.138.135/salt/';
      mediaBaseUrl = 'http://media.edunix.in/';
 

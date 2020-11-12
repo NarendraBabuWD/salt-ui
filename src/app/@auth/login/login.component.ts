@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthResult, AuthService } from './../../@core/services/auth.service';
 import { Config } from '../../../app.config';
 import { HttpService } from './../../@core/services/http.service';
@@ -20,12 +20,14 @@ export class NgxLoginComponent  {
 
   submitted: boolean = false;
   validDomain: boolean = false;
-
+  isReadOnly: boolean = false;
   ValidatingDomain: boolean = false;
   logoUrl: string = '';
 
-  constructor(protected service: AuthService, protected router: Router,
-              private httpService: HttpService) {
+  constructor(protected service: AuthService, 
+              protected router: Router,
+              private httpService: HttpService,
+              private route: ActivatedRoute) {
                 this.service.logout();
 
                 if (localStorage.getItem('domain')) {
@@ -43,6 +45,18 @@ export class NgxLoginComponent  {
   ngOnInit(): void {
     localStorage.clear();
     sessionStorage.clear();
+    this.route.url.subscribe(() =>{
+      // console.log(this.route.snapshot);
+      console.log(this.route.snapshot['_routerState'].url); 
+      if( this.route.snapshot['_routerState'].url == "/owner/login"){
+        this.user.domain = "loc1";
+        this.isReadOnly = true;
+      } else{
+        this.user.domain = "";
+        this.isReadOnly = false;
+      }
+      
+    });
   }
 
   // validateDomain() {
