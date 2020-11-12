@@ -130,9 +130,11 @@ export class StaffsComponent  {
     localStorage.setItem('locationid',event.organisation_location_id);
     localStorage.setItem('locationname',event.locname);
     // let orgLocId = { organisation_location_id: event.organisation_location_id};
-    let orgLocId = { organisation_location_id: 5};
+    console.log(event.organisation_location_id);
+    let orgLocId = { organisation_location_id: event.organisation_location_id};
     this.service.post('Staff/getstaffs', orgLocId, null).subscribe(
       (response) => {
+        console.log(response);
         this.staffs = response;
         this.dataGridSource.load(this.staffs);
       },
