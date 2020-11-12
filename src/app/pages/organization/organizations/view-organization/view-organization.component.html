@@ -91,10 +91,10 @@
           &nbsp;
           <button class="btn btn-sm btn-warning" (click)="view(item2)"><i class="nb-compose" title="View"></i></button>
           &nbsp;
-          <button class="btn btn-sm btn-danger" (click)="confirmDelete(item2)"><i class="nb-trash" title="Delete"></i></button>
+          <button *ngIf="locations.length > 1" class="btn btn-sm btn-danger" (click)="confirmDelete(item2)"><i class="nb-trash" title="Delete"></i></button>
           &nbsp;
-          <label class="switch">
-          <input type="checkbox" [checked]="item2.status == 1" (change)="changeStatus(item2,$event)">
+          <label class="switch" *ngIf="locations.length > 1">
+          <input type="checkbox" [checked]="item2.locstatus == 1" (change)="changeStatus(item2,$event)">
           <span class="slider round"></span>
           </label>
           </td>

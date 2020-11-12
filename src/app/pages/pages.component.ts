@@ -72,7 +72,7 @@ export class PagesComponent {
           //  },
         
           {
-            title: 'Subscription',
+            title: 'Subscriptions',
             icon: 'clipboard-outline',
             link: '/owner/subscription/all'
           },
@@ -114,7 +114,7 @@ export class PagesComponent {
         // MENU_ITEMS = [];
             this.MENU_ITEMS = [
               {
-                title: 'Practitioner ',
+                title: 'Dashboard ',
                 icon: 'home-outline',
                 link: '/practice/practitionerDashboard'
               },
@@ -180,9 +180,9 @@ export class PagesComponent {
         // MENU_ITEMS = [];
         this.MENU_ITEMS = [
           {
-            title: 'Allied Health',
+            title: 'Dashboard',
             icon: 'home-outline',
-            // link: '/allied/alliedHealthDashboard'
+            link: '/allied/alliedHealthDashboard',
             children:[
               {
                 title:'ViewAllied',
