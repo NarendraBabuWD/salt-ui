@@ -36,7 +36,7 @@ export class EnumsService {
     ];
     
     orgTypes: any = [
-        // { id: 1, name: 'Owner'},
+        { id: 1, name: 'Owner'},
         { id: 2, name: 'Practice' },
         { id: 3, name: 'Allied'},
         { id: 4, name: 'Specialist'},
