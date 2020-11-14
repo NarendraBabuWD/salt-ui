@@ -28,7 +28,7 @@
         <div class="row">
           <div class="form-group col-md-4">
             <label for="organisation_type_id" class="label">Organisation type</label>
-            <nb-select placeholder="Choose Organisation Type" fullWidth  formControlName="organisation_type_id">
+            <nb-select placeholder="Choose Organisation Type" fullWidth (selectedChange)="getOrgId($event)" formControlName="organisation_type_id">
                 <nb-option *ngFor="let data of orgTypes" value={{data.id}}>{{data.name}}</nb-option>
             </nb-select>
             <small class="text-danger" *ngIf="f.organisation_type_id.hasError('required') && f.organisation_type_id.touched">Please enter Organisation Type.</small>

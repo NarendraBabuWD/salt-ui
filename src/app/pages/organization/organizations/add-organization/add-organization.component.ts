@@ -25,6 +25,9 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
   orgtypeId: any;
   orgTypes: any;
   editOrgForm: FormGroup;
+  isAlreadyExistTitle:any;
+  errorMsg:any;
+  orgemail:any;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: HttpService,
     private toastr: ToastrService, private fb: FormBuilder,private enums: EnumsService,private location:Location) {
@@ -109,9 +112,13 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
   get f() {
      return this.organizationForm.controls;
   }
+  getOrgId(event:any){
+console.log(event);
+  }
 
   loadDetails(id: string) {
-    this.service.get('Organization/GetRole?RoleId=' + id, null).subscribe(
+    let body={ RoleId:id}
+    this.service.post('Organization/GetRole',body, null).subscribe(
       response => {
         this.setDetails(response);
       },
@@ -120,7 +127,36 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
       },
     );
   }
-
+  checkEmail(event: any){
+     const orgEmail : any = event.target.value;
+    this.orgemail = orgEmail;
+    this.isAlreadyExistTitle = false;
+    this.errorMsg = '';
+    if(this.orgemail != '' && this.orgtypeId){
+      let body = {
+        email: orgEmail,
+        organisation_type_id: this.orgtypeId
+    }
+  
+  this.service.post('/Organisation/CheckEmail', body,null).subscribe(
+        (response) => { 
+           
+           if(response.length > 0){
+            this.isAlreadyExistTitle = true;
+            this.errorMsg = 'Already Exist';
+            // this.toastr.error("Role Exist, Please enter different combination of organisation type and role name")
+           }else{
+            this.isAlreadyExistTitle = false;
+            this.errorMsg = '';
+           }
+           
+        },
+        (error) => {
+          this.toastr.error(error.error);
+        });
+    }
+   
+  }
   onSubmit() {
     const formData = this.organizationForm.value;
     formData.loctimezone =   new Date();
@@ -178,7 +214,7 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
     }
     this.loading = false;
   }
-
+  
   ngOnDestroy() {
    this.subscription.unsubscribe();
   }
