@@ -25,6 +25,7 @@ export class AddRoleComponent implements OnInit {
   roleModules: any = [];
   orgTypes: any;
   permIds: string = "";
+  editedPermIds: string = "";
   permissions: FormArray;
   selectedItem: any = [];
   orgTypeId: any;
@@ -80,6 +81,7 @@ export class AddRoleComponent implements OnInit {
     let roleByID = { RoleId: id };
     this.service.post('Roles/GetRole', roleByID, null).subscribe(
       response => {
+        console.log(response);
         this.setDetails(response);
       },
       error => {
@@ -91,11 +93,29 @@ export class AddRoleComponent implements OnInit {
   get f() { return this.roleForm.controls; }
 
   SavePermission(event) {
+    console.log(event);
+    
     try{
-      var permId = event.currentTarget.getAttribute("id")
+      var permId = event.currentTarget.getAttribute("id");
+      console.log(permId);
+      
       if(event.target.checked){
         this.arrPermIds.push(permId);
         this.resultPermIds.push(permId);
+        
+        
+       if(this.editMode){
+         console.log("EDIT");
+         console.log(this.arrPermIds);
+        console.log(this.resultPermIds);
+        this.finalPermIds.push(permId);
+        console.log(this.finalPermIds);
+        
+        this.editedPermIds = this.arrPermIds.toString();
+        console.log(this.editedPermIds);
+        
+       }
+        
       }
       else if(this.editMode == false){
          //remove from the array 
@@ -135,7 +155,13 @@ export class AddRoleComponent implements OnInit {
       (response) => {
        // this.enums.orgModules = {org:id,modules:response};
          this.roleModules = response;
-
+           for(let i =0; i < this.roleModules.length; i++){
+                for(let j =0; j < this.roleModules[i].permissions.length; j++){
+                        this.roleModules[i].permissions[j].status = 0;
+                }
+           }
+           console.log(this.roleModules);
+           
       },
       (error) => {
         this.toastr.error(error.error);
@@ -192,14 +218,16 @@ export class AddRoleComponent implements OnInit {
   onSubmit() {
     const formData = this.roleForm.value;
     let postData:any = {};
-    this.loading = true;
+    // this.loading = true;
     //this.permIds = this.arrPermIds.toString();
     this.permIds = this.resultPermIds.toString();
 
     if (this.roleForm.valid == true) {
       if (this.editMode == false) {
         postData = JSON.stringify({...formData,permission_id: this.permIds,createdBy:1});
-        this.service.postJson('Roles/CreateRole', postData).subscribe(
+
+        console.log(postData);
+       this.service.postJson('Roles/CreateRole', postData).subscribe(
           (response) => {
            // this.roleForm.reset();
             this.editMode = true;
@@ -220,11 +248,18 @@ export class AddRoleComponent implements OnInit {
                 // this.checkRole(this.orgTypeId,formData.name,);
         
                 // if(formData.permissions.length>0){
-                postData = JSON.stringify({Id:this.roleId,name:formData.roleName,organisation_type_id:this.orgTypeId,permission_id: this.permIds,updatedBy:1})
-                var event=(postData.roleName,this.orgTypeId)
+                  console.log(this.editedPermIds);
+                postData = {Id: this.roleId,
+                               name: formData.name,
+                              organisation_type_id: this.orgTypeId,
+                              permission_id: this.editedPermIds,
+                              updated_by:1
+                            };
+                // var event=(postData.roleName,this.orgTypeId)
+                console.log(postData);
                 
                 // this.checkRole(event);
-                this.service.postJson('Roles/UpdateRole' , postData).subscribe(
+                this.service.postJson('Roles/updaterole' , postData).subscribe(
                   (response) => {
                    // this.roleForm.reset();
                     this.editMode = true;
@@ -256,30 +291,47 @@ export class AddRoleComponent implements OnInit {
 
   setDetails(data: any) {
     if (data) {
+      console.log(data);
       this.f.name.setValue(data.name);
       this.f.organisation_type_id.setValue(data.orgType);
-      this.roleForm.get('OrgTypeId').disable();
+      // this.roleForm.get('OrgTypeId').disable();
       var modIndex = 0; var permIndex = 0;
- 
+     console.log(this.roleModules);
+     
       for(const m of  data.modules){
         var selectedmod = this.roleModules.find((i: any) => i.name == m.name);
+        console.log(selectedmod);
+        
         if(selectedmod){
         modIndex = this.roleModules.indexOf(selectedmod);
 
         for(const p of m.permissions){
+          console.log(p);
+          
           var perm = this.roleModules[modIndex].permissions.find((i:any) => i.id == p.id) ;
           if(perm){
+            console.log(perm);
+            
             permIndex =this.roleModules[modIndex].permissions.indexOf(perm);
             this.roleModules[modIndex].permissions[permIndex].status = true;
             perm.status = true;
 
-            this.arrPermIds.push(perm.id)
+            this.arrPermIds.push(perm.id.toString());
+          } else {
+            permIndex =this.roleModules[modIndex].permissions.indexOf(perm);
+            this.roleModules[modIndex].permissions[permIndex].status = false;
+            perm.status = false;
+            this.arrPermIds.push(perm.id.toString());
           }
         }
         this.finalPermIds = this.arrPermIds.slice();
         this.editPermIds = this.arrPermIds.slice();
 
+        console.log(this.finalPermIds);
+        console.log(this.editPermIds);
         this.permIds = this.arrPermIds.toString();
+        console.log(this.permIds);
+        
       }
 
      }
