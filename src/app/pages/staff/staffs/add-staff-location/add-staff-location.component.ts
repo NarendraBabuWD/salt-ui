@@ -30,13 +30,16 @@ export class AddStaffLocationComponent implements OnInit {
       this.orgName = this.enums.orgName;
       this.locname = this.enums.locname;
       this.locationId = this.enums.locationId;
-      this.staffId = this.enums.staffId;
+      // this.staffId = this.enums.staffId;
   }
 
   ngOnInit() {
     this.subscription = this.route.queryParams.subscribe(params => {
-      if (params && params.id) {
+
+      // console.log(params.staffId);
+      if (params && params.staffId) {
         this.staffLocationId = params.id;
+        this.staffId = params.staffId;
       }
         this.staffLocationForm = this.fb.group({
         organisation_location_id:['', [Validators.required]],
@@ -122,7 +125,15 @@ let body={
   //  let staff_id:this.staffLocationId
     this.loading = true;
     if (this.staffLocationForm.valid == true) {
-        postData = {...formData,created_by: 1};
+      console.log(formData);
+      
+        // postData = {...formData,created_by: 1};
+        postData = {
+          staff_id: this.staffId,
+          organisation_location_id: formData.organisation_location_id,
+          role_id: formData.role_id,
+          created_by: 1
+        }
         this.service.post('Staff/createstafflocation',postData,null).subscribe(
           (response) => {
             this.staffLocationForm.reset();

@@ -126,11 +126,11 @@ export class ViewStaffComponent implements OnInit {
   createStaffLocation(){
     // this.router.navigate(['/pages/staff/location'], { queryParams: { id: this.locationId } });
     if(sessionStorage.getItem("organizationTypeId") === '1'){
-      this.router.navigate(['/owner/staff/location'], { queryParams: { id: this.locationId } });
+      this.router.navigate(['/owner/staff/location'], { queryParams: { staffId: this.staffId } });
       } else if(sessionStorage.getItem("organizationTypeId") === '2'){
-        this.router.navigate(['/practice/staff/location'], { queryParams: { id: this.locationId } });
+        this.router.navigate(['/practice/staff/location'], { queryParams: { staffId: this.staffId } });
       }else if(sessionStorage.getItem("organizationTypeId") === '3'){
-        this.router.navigate(['/allied/staff/location'], { queryParams: { id: this.locationId } });
+        this.router.navigate(['/allied/staff/location'], { queryParams: { staffId: this.staffId } });
     }
   }
 
