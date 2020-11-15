@@ -29,7 +29,7 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
   errorMsg:any;
   orgemail:any;
   selectedOrgType: any;
-  maxMsglength: any;
+  // maxMsglength: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: HttpService,
     private toastr: ToastrService, private fb: FormBuilder,private enums: EnumsService,private location:Location) {
@@ -82,7 +82,7 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
         trading_name: [''],
         abn: ['', [Validators.required]],
         email: [''],
-        phone: ['', [Validators.maxLength(this.maxMsglength)]],
+        phone: ['',[Validators.maxLength,Validators.minLength]],
         locname:['',[Validators.required]],
         locidentifier: ['', [Validators.required]],
         locphone: ['', [Validators.required,Validators.maxLength,Validators.minLength]],
