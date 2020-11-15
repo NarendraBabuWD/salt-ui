@@ -43,13 +43,13 @@
                 </ng-select>
                 <small class="text-danger" *ngIf="f.role_id.hasError('required') && f.role_id.touched">Please select role.</small>
             </div>
-            <div class="form-group col-md-4">
+            <!-- <div class="form-group col-md-4">
                 <label for="staffs" class="label">Staff</label>
                 <ng-select [clearable]="false" appendTo="body" placeholder="Choose Staff" formControlName="staff_id"
                    [items]="staffs" bindLabel="firstname" bindValue="id">
                 </ng-select>
-                <small class="text-danger" *ngIf="f.staff_id.hasError('required') && f.staff_id.touched">Please select staff.</small>
-              </div>
+                <small class="text-danger" *ngIf="f.staff_id.touched">Please select staff.</small>
+              </div> -->
           </div>
           
         </form>

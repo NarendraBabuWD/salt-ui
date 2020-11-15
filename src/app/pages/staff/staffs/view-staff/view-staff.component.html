@@ -74,10 +74,42 @@
             </div>
           </div>
         </div>
-
+<!-- 
         <ng2-smart-table [settings]="dataGridSettings" [source]="dataGridSource" (edit)="deactivateStaffLocation($event)"
          (delete)="delete($event)" >
-       </ng2-smart-table>
+       </ng2-smart-table> -->
+       <table class="table" >
+        <thead>
+        <tr >
+        <th scope="col">Location Name</th>
+        <th scope="col">Role name</th>
+        <!-- <th scope="col">Email</th> -->
+        <!-- <th scope="col">Postcode</th> -->
+        <!-- <th scope="col">Address</th> -->
+        <th scope="col" style="text-align: center; vertical-align: middle;">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item2 of staffLocations">
+        <td >{{item2.location_name}} {{item2.surname}}</td>
+        <td >{{item2.role_name}}</td>
+        <!-- <td >{{item2.email}}</td> -->
+        <!-- <td >{{item2.postcode}}</td> -->
+        <!-- <td >{{item2.address}}</td> -->
+        <td style="text-align: center; vertical-align: middle;">
+          <button class="btn btn-sm btn-danger" (click)="confirmDelete(item2)"><i class="nb-trash" title="Delete"></i></button>
+        &nbsp;
+        <label class="switch">
+        <button class="btn btn-sm btn-danger" (click)="delete(item2)"><i class="nb-trash" title="Delete"></i></button>
+        <span class="slider round"></span>
+        </label>
+        </td>
+        </tr>
+        
+  </tbody>
+  
+  </table>
+
         
     </nb-card-body>
   </nb-card>

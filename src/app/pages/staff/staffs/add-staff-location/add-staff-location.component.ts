@@ -39,7 +39,6 @@ export class AddStaffLocationComponent implements OnInit {
         this.staffLocationId = params.id;
       }
         this.staffLocationForm = this.fb.group({
-        staff_id:['', [Validators.required]],
         organisation_location_id:['', [Validators.required]],
         role_id: ['', [Validators.required]],
       });
@@ -57,7 +56,8 @@ export class AddStaffLocationComponent implements OnInit {
   }
 
   loadOrganizations(){
-    this.service.get('Organization/getOrganisations', null).subscribe(
+    let body={}
+    this.service.post('Organization/getOrganisations', body,null).subscribe(
       (response) => {
         this.organizations = response;
       },
@@ -67,9 +67,11 @@ export class AddStaffLocationComponent implements OnInit {
   }
      
   loadLocations(id : any) {
+    let body={organisation_id: id}
+
    // this.enums.orgName = event.organisation_name;
    //this.enums.orgName = localStorage.getItem("organisationName")
-    this.service.get('Organization/getOrganisationlocations?organisation_id='+ id, null).subscribe(
+    this.service.post('Organisation/getOrganisationlocations',body, null).subscribe(
       (response) => {
         this.locations = response.getlocs;
       },
@@ -79,7 +81,8 @@ export class AddStaffLocationComponent implements OnInit {
   }
 
   loadRoles() {
-    this.service.get('Roles/GetRoles', null).subscribe(
+    let body={}
+    this.service.post('Roles/GetRoles',body, null).subscribe(
       (response) => {
         this.roles =response;
       },
@@ -89,7 +92,10 @@ export class AddStaffLocationComponent implements OnInit {
   }
   
   loadStaffs(){
-    this.service.get('Staff/getstaffs?organisation_location_id='+ this.staffLocationId, null).subscribe(
+let body={
+  organisation_location_id:this.staffLocationId
+}
+    this.service.post('Staff/getstaffs', body, null).subscribe(
       (response) => {
         this.staffs = response;
       },
@@ -113,11 +119,11 @@ export class AddStaffLocationComponent implements OnInit {
   onSubmit() {
     const formData = this.staffLocationForm.value;
     let postData:any;
+  //  let staff_id:this.staffLocationId
     this.loading = true;
     if (this.staffLocationForm.valid == true) {
-        postData = {...formData,  created_by: 1};
-        let queryData = this.querify(postData);
-        this.service.post('Staff/createstafflocation?'+queryData,null,null).subscribe(
+        postData = {...formData,created_by: 1};
+        this.service.post('Staff/createstafflocation',postData,null).subscribe(
           (response) => {
             this.staffLocationForm.reset();
             //this.setDetails(response);

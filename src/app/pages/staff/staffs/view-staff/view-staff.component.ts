@@ -147,7 +147,9 @@ export class ViewStaffComponent implements OnInit {
     context:{ title:'Delete', data:'Are you sure, You want to delete this staff location?'} })
     .onClose.subscribe((res) => {
       if (res == 'delete') {
-        this.service.post('Staff/deletestafflocation?id=' + data.staff_location_id + '&deleted_by=1', null,null).subscribe(
+        let body={ id:data.organisation_location_id,
+           deleted_by:1}
+        this.service.post('Staff/deletestafflocation', body,null).subscribe(
           (response) => {
             this.dataGridSource.remove(data);
             const index = this.staffLocations.findIndex(obj => obj.staff_location_id = data.staff_location_id);
@@ -162,12 +164,15 @@ export class ViewStaffComponent implements OnInit {
   }
 
   confirmDeactivate(data: any) {
-    if (data.location_status == "1") {
-      this.dialogService.open(ConfirmDeleteComponent, { hasBackdrop: false,
+    if (data.status == "1") {
+      this.dialogService.open(ConfirmDeleteComponent, { hasBackdrop: true,
         context:{ title:'Deactivate', data:'Are you sure, You want to deactivate this staff location?'} })
         .onClose.subscribe((res) => {
           if (res == 'delete') {
-            this.service.post('Staff/activatestafflocation?id=' + data.staff_location_id + '&updated_by=1', null,null).subscribe(
+            let body={ id:data.organisation_location_id,
+                 updated_by:1
+            }
+            this.service.post('Staff/deactivatestafflocation', body,null).subscribe(
               (response) => {
                 const index = this.staffLocations.findIndex(obj => obj.staff_location_id = data.staff_location_id);
                 this.staffLocations[index].status = "2";
@@ -184,7 +189,9 @@ export class ViewStaffComponent implements OnInit {
         context:{ title:'Activate', data:'Are you sure, You want to activate this staff location?'} })
         .onClose.subscribe((res) => {
           if (res == 'delete') {
-            this.service.post('Staff/deactivatestafflocation?id=' + data.staff_location_id + '&updated_by=1', null,null).subscribe(
+            let body={ id:data.organisation_location_id ,
+              updated_by:1}
+            this.service.post('Staff/activatestafflocation', body,null).subscribe(
               (response) => {
                 const index = this.staffLocations.findIndex(obj => obj.staff_location_id = data.staff_location_id);
                 this.staffLocations[index].status = "1";

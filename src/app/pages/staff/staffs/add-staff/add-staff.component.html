@@ -29,23 +29,7 @@
           </div>
           </div>
 
-          <div class="row" *ngIf="!editMode">
-            <!-- <div class="form-group col-md-4">
-              <label for="organization" class="label">Organization</label>
-              <ng-select [clearable]="false" appendTo="body"
-              placeholder="Choose Organization" (change)="loadLocations($event);"
-                 [items]="organizations" bindLabel="organisation_name" bindValue="organisation_id">
-             </ng-select>
-            </div> -->
-            <div class="form-group col-md-4">
-              <label for="location" class="label">Location</label>
-              <ng-select [clearable]="false" appendTo="body" placeholder="Choose Location" formControlName="organisation_location_id"
-               [items]="locations" bindLabel="locname" bindValue="organisation_location_id">
-             </ng-select>
-                <small class="text-danger" *ngIf="f.organisation_location_id.hasError('required')">Please enter Location.</small>
-            </div>
-          </div>
-
+       
           <div class="row" *ngIf="editMode">
             <!-- <div class="form-group col-md-4">
               <label for="organization" class="label">Organization</label>
@@ -173,7 +157,24 @@
               </ng-select>
               <small class="text-danger" *ngIf="f.preference.hasError('required') && f.preference.touched">Please enter postcode.</small>
           </div>
+          
         </div>   
+        <div class="row" *ngIf="!editMode">
+          <!-- <div class="form-group col-md-4">
+            <label for="organization" class="label">Organization</label>
+            <ng-select [clearable]="false" appendTo="body"
+            placeholder="Choose Organization" (change)="loadLocations($event);"
+               [items]="organizations" bindLabel="organisation_name" bindValue="organisation_id">
+           </ng-select>
+          </div> -->
+          <div class="form-group col-md-4">
+            <label for="location" class="label">Location</label>
+            <ng-select [clearable]="false" appendTo="body" placeholder="Choose Location" formControlName="organisation_location_id"
+             [items]="locations" bindLabel="locname" bindValue="organisation_location_id">
+           </ng-select>
+              <small class="text-danger" *ngIf="f.organisation_location_id.hasError('required')">Please enter Location.</small>
+          </div>
+        </div>
 
         </form>
     </nb-card-body>
