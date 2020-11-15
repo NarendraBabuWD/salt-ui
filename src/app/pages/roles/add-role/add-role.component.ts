@@ -46,6 +46,13 @@ export class AddRoleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.roleForm = this.fb.group({
+      name: ['', [Validators.required]],
+      organisation_type_id: ['', [Validators.required]],
+      permissions: this.fb.array([ this.createPermission() ]),
+    });
+
     this.subscription = this.route.queryParams.subscribe(params => {
       if (params && params.id) {
         this.roleId = params.id;
@@ -54,13 +61,10 @@ export class AddRoleComponent implements OnInit {
         this.editMode = true;
         this.loadGetData(this.orgTypeId);
         this.loadDetails(params.id);
+        this.roleForm.controls['organisation_type_id'].disable();
       }
 
-      this.roleForm = this.fb.group({
-        name: ['', [Validators.required]],
-        organisation_type_id: ['', [Validators.required]],
-        permissions: this.fb.array([ this.createPermission() ]),
-      });
+     
 
     });
   }

@@ -25,9 +25,11 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
   orgtypeId: any;
   orgTypes: any;
   editOrgForm: FormGroup;
-  isAlreadyExistTitle:any;
+  isAlreadyExistTitle: boolean = false;
   errorMsg:any;
   orgemail:any;
+  selectedOrgType: any;
+  maxMsglength: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: HttpService,
     private toastr: ToastrService, private fb: FormBuilder,private enums: EnumsService,private location:Location) {
@@ -80,7 +82,7 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
         trading_name: [''],
         abn: ['', [Validators.required]],
         email: [''],
-        phone: ['',[Validators.maxLength,Validators.minLength]],
+        phone: ['', [Validators.maxLength(this.maxMsglength)]],
         locname:['',[Validators.required]],
         locidentifier: ['', [Validators.required]],
         locphone: ['', [Validators.required,Validators.maxLength,Validators.minLength]],
@@ -112,9 +114,20 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
   get f() {
      return this.organizationForm.controls;
   }
-  getOrgId(event:any){
-console.log(event);
-  }
+ 
+
+  /*validatePhone(event){
+    const enteredPhone = event.target.value;
+    console.log(enteredPhone);
+    console.log(enteredPhone.charAt(0));
+    if(enteredPhone.charAt(0) === '0') {
+      this.maxMsglength = 11;
+      this.organizationForm.controls['phone'].setValidators(Validators.minLength(11));
+    } else {
+      this.maxMsglength = 10;
+      this.organizationForm.controls['phone'].setValidators(Validators.minLength(10));
+    }
+  }*/
 
   loadDetails(id: string) {
     let body={ RoleId:id}
@@ -127,21 +140,28 @@ console.log(event);
       },
     );
   }
+
+  getOrgId(event:any){
+    console.log(event);
+    this.selectedOrgType = event;
+  }
+
   checkEmail(event: any){
-     const orgEmail : any = event.target.value;
-    this.orgemail = orgEmail;
+    const enteredEmail = event.target.value;
+
     this.isAlreadyExistTitle = false;
     this.errorMsg = '';
-    if(this.orgemail != '' && this.orgtypeId){
+    console.log(this.selectedOrgType);
+    console.log(enteredEmail);
       let body = {
-        email: orgEmail,
-        organisation_type_id: this.orgtypeId
+        email: enteredEmail,
+        organisation_type_id: this.selectedOrgType
     }
   
-  this.service.post('/Organisation/CheckEmail', body,null).subscribe(
+  this.service.post('Organisation/CheckEmail', body, null).subscribe(
         (response) => { 
-           
-           if(response.length > 0){
+           console.log(response);
+           if(response){
             this.isAlreadyExistTitle = true;
             this.errorMsg = 'Already Exist';
             // this.toastr.error("Role Exist, Please enter different combination of organisation type and role name")
@@ -154,7 +174,7 @@ console.log(event);
         (error) => {
           this.toastr.error(error.error);
         });
-    }
+    
    
   }
   onSubmit() {
