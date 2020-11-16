@@ -16,7 +16,7 @@
           <button nbButton status="primary" [disabled]="editOrganizationForm.invalid">
             <span>Update</span>
           </button>
-          <button type="button" nbButton (click)="cancel()" status="danger">Cancel</button>
+          <button class="ml-3" type="button" nbButton (click)="cancel()" status="danger">Cancel</button>
         </div>
        </div>
        <br/>
@@ -72,5 +72,52 @@
           </div> -->
         </div>
        </form>
+
+       <div class="row">
+        <div class="form-group offset-md-8 col-md-4 text-right">
+          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            
+              <button nbButton status="primary" (click)="createLocation()">Add Location</button>
+          </div>
+        </div>
+      </div>
+
+
+      
+      <table class="table" >
+        <thead>
+        <tr >
+        <th scope="col">Location Name</th>
+        <!-- <th scope="col">Mobile</th> -->
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <!-- <th scope="col">City</th> -->
+        <th scope="col" style="text-align: center; vertical-align: middle;">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item2 of locations">
+        <td >{{item2.locname}}</td>
+        <td >{{item2.locemail}}</td>
+        <td >{{item2.locphone}}</td>
+        <td style="text-align: center; vertical-align: middle;">
+        <button class="btn btn-sm btn-primary" (click)="editLocation(item2)"><i class="nb-compose" title="Update"></i></button>
+        &nbsp;
+        <button class="btn btn-sm btn-warning" (click)="view(item2)"><i class="nb-compose" title="View"></i></button>
+        &nbsp;
+        <button *ngIf="locations.length > 1" class="btn btn-sm btn-danger" (click)="confirmDelete(item2)"><i class="nb-trash" title="Delete"></i></button>
+        &nbsp;
+        <label class="switch" *ngIf="locations.length > 1">
+        <input type="checkbox" [checked]="item2.locstatus == 1" (change)="changeStatus(item2,$event)">
+        <span class="slider round"></span>
+        </label>
+        </td>
+        </tr>
+        
+  </tbody>
+  
+  </table>
+
+  
     </nb-card-body>
   </nb-card>
