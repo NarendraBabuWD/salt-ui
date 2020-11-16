@@ -100,7 +100,7 @@
           <button class="btn btn-sm btn-danger" (click)="confirmDelete(item2)"><i class="nb-trash" title="Delete"></i></button>
         &nbsp;
         <label class="switch">
-        <button class="btn btn-sm btn-danger" (click)="delete(item2)"><i class="nb-trash" title="Delete"></i></button>
+          <input type="checkbox" [checked]="item2.status == 1" (change)="confirmDeactivate(item2,$event)">
         <span class="slider round"></span>
         </label>
         </td>

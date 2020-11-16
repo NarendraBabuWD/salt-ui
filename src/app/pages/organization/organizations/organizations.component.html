@@ -29,7 +29,7 @@
         <tr >
         <th scope="col">Organisation Name</th>
         <th scope="col">Organisation Type</th>
-        <th scope="col">Trading Name</th>
+        <th scope="col">Email</th>
         <th scope="col">ABN</th>
         <th scope="col">Action</th>
         </tr>
@@ -38,7 +38,7 @@
         <tr *ngFor="let item2 of organizations">
         <td >{{item2.organisation_name}}</td>
         <td >{{item2.org_type_name}}</td>
-        <td >{{item2.trading_name}}</td>
+        <td >{{item2.email}}</td>
         <td >{{item2.abn}}</td>
         <td>
         <button class="btn btn-sm btn-primary" (click)="edit(item2)"><i class="nb-compose" title="Update"></i></button>
