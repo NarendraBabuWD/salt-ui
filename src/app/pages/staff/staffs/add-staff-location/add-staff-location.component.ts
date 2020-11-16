@@ -140,6 +140,7 @@ let body={
             //this.setDetails(response);
             this.loading = false;
             this.toastr.success('Staff Location Saved successfully');
+            this.goBack();
           },
           (error) => {
             this.loading = false;
