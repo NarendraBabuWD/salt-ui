@@ -1,1 +1,165 @@
-<h1>add-type</h1>
+<nb-card>
+    <nb-card-header> Add Appointment Type
+    </nb-card-header>
+    <nb-card-body>      
+  
+
+        
+    <div class="card">
+        <div class="card-body">
+          
+          <form [formGroup]="addAppTypeForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01">Codes</label>
+                <input type="text" class="form-control" formControlName="ServiceCode" placeholder="Service Code" required>
+
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label for="validationCustom01"> </label>
+                <input type="text" class="form-control mt-2" formControlName="AccountingCode" placeholder="Accounting Code" required>
+
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom02"> Name</label>
+                <input type="text" class="form-control" formControlName="Name" required>
+                
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationCustomUsername">Description</label>
+                
+                 
+                  <input type="text" class="form-control" formControlName="Description" required>
+                 
+                
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom03">Category</label>
+                <!-- <input type="text" class="form-control" formControlName="CategoryId" required> -->
+                <select id="CategoryId" class="form-control" name="CategoryId" formControlName="CategoryId" required>
+                    <option selected value="">Select</option>
+                    <option value="General"> General</option>
+                    </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom04">Color</label>
+                
+                <!-- <input type="text" class="form-control" formControlName="Color" required> -->
+                <select id="Color" class="form-control" name="Color" formControlName="Color" required>
+                    <option selected value="">Select</option>
+                    <option value="#BF3DBF" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogI0JGM0RCRjsiIC8+PC9zdmc+">Fuchsia</option>
+                    <option value="#8C35BC" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzhDMzVCQzsiIC8+PC9zdmc+">Grape</option>
+                    <option value="#582DB9" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzU4MkRCOTsiIC8+PC9zdmc+">Purple</option>
+                    <option value="#343BBC" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzM0M0JCQzsiIC8+PC9zdmc+">Blueberry</option>
+                    <option value="#0F49BF" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzBGNDlCRjsiIC8+PC9zdmc+">Blue</option>
+                    <option value="#0868BF" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzA4NjhCRjsiIC8+PC9zdmc+">Denim</option>
+                    <option value="#0087BF" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzAwODdCRjsiIC8+PC9zdmc+">Cyan</option>
+                    <option value="#128A72" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzEyOEE3MjsiIC8+PC9zdmc+">Mint</option>
+                    <option value="#248C24" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzI0OEMyNDsiIC8+PC9zdmc+">Green</option>
+                    <option value="#8B8C13" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzhCOEMxMzsiIC8+PC9zdmc+">Olive</option>
+                    <option value="#F18B02" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogI0YxOEIwMjsiIC8+PC9zdmc+">Yellow</option>
+                    
+                    </select>
+              </div>
+              <!-- <div class="col-md-4 mb-3">
+                <label for="validationCustom05">Gender</label>
+                <br />
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="male" value="1" formControlName="gender" class="custom-control-input">
+                  <label class="custom-control-label" for="male">Male</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="female" value="2" formControlName="gender" class="custom-control-input">
+                  <label class="custom-control-label" for="female">Female</label>
+                </div>
+              </div> -->
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom03">Duration</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" formControlName="Duration" >
+                    <div class="input-group-append">
+                      <span class="input-group-text">Minutes</span>
+                    </div>
+                  </div>
+              </div>
+            </div>
+  
+  
+            <div class="form-row">
+              
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom04"> Price</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    <input type="text" formControlName="Price" class="form-control" >
+                  </div>
+  
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom05">Providers</label>
+                <!-- <input type="text" class="form-control" formControlName="ProviderId" required> -->
+                <select id="ProviderId" class="form-control" name="ProviderId" formControlName="ProviderId" required>
+                    <option selected value="">Select</option>
+                    <option value="Cardiology"> Cardiology</option>
+                    <option value="Cardiothoracic Surgery">Cardiothoracic Surgery</option>
+                    <option value="Endocrinology"> Endocrinology</option>
+                    <option value="ENT">ENT</option>
+                    <option value="Gastroentrology"> Gastroentrology</option>
+                    <option value="General Surgery">General Surgery</option>
+                    <option value="Nephrology">Nephrology</option>
+                    </select>
+              </div>
+            </div>
+  
+    <hr>
+     <h4>Availability</h4>
+            <div class="form-row">
+              
+                <div class="col-md-6 mb-3">
+                    <label for="validationCustom05">Locations</label>
+                    <br />
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="allLocations" value="1" (change)="onItemChange($event.target.value)"
+                        formControlName="Organisation_Location_Id" class="custom-control-input">
+                      <label class="custom-control-label" for="allLocations">All Locations</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="selectLocations" value="2" (change)="onItemChange($event.target.value)"
+                        formControlName="Organisation_Location_Id" class="custom-control-input">
+                      <label class="custom-control-label" for="selectLocations">Selection</label>
+                    </div>
+                  </div>
+               
+                 <div *ngIf="selectLocations" class="col-md-6 mb-3" style="background-color: rgba(0,0,0,0.03);">
+                    <p *ngFor="let item of locations" >
+                        <nb-checkbox status="success" [checked]="item.status"  data-id="{{item.id}}"> {{item.name}}</nb-checkbox>                
+                    </p>
+                 
+                </div> 
+            </div>
+  
+  
+            
+  
+           <div class="card-footer text-center">
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-danger ml-3">Cancel</button>
+           </div>
+           
+            
+          </form>
+          
+         
+      </div>
+      </div>
+  
+
+
+    </nb-card-body>
+  </nb-card>

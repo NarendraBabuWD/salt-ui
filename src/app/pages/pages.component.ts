@@ -55,11 +55,11 @@ export class PagesComponent {
             icon: 'award-outline',
             link: '/owner/roles/all'
           },
-          {
+         /* {
             title:'Appointments',
             icon:'nb-person',
             link:'/owner/appointments/all',
-          },
+          },*/
           {
             title: 'Staff',
             icon: 'person-outline',
@@ -81,6 +81,19 @@ export class PagesComponent {
             icon: 'clipboard-outline',
             link: '/owner/subscription/all'
           },
+
+          {
+            title: 'Appointments',
+            icon: 'edit-2-outline',
+            children: [
+              {
+                title: 'Appointment Type',
+                link: '/owner/appointments/all',
+              },
+              
+            ],
+          },
+
         /*  {
             title: 'Business',
             icon: 'edit-2-outline',

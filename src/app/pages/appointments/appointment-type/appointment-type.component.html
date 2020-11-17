@@ -1,4 +1,4 @@
-<nb-card>
+<!-- <nb-card>
     <nb-card-header>
       <div class="row">
         <div class="col-8">
@@ -192,4 +192,45 @@
                         </div>
     </div>
 </form>
-</nb-card-body>
+</nb-card-body> -->
+
+
+<nb-card>
+    <nb-card-header> Appointment Type 
+      <button type="button" nbButton status="primary" class="btn btn-primary float-right" 
+      (click)="create()">Add 
+    </button>
+    </nb-card-header>
+    <nb-card-body>      
+      
+
+      <table class="table" >
+        <thead>
+        <tr >
+        <th scope="col">Code</th>
+        <th scope="col"> Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Color</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Price</th>
+        <th scope="col">Location</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item2 of appTypeListArray">
+        <td >{{item2.code}}</td>
+        <td >{{item2.name}}</td>
+        <td >{{item2.category}}</td>
+        <td >{{item2.color}}</td>
+
+        <td >{{item2.duration}}</td>
+        <td >{{item2.price}}</td>
+        <td >{{item2.location}}</td>
+       
+        </tr>
+        
+  </tbody>
+  
+  </table>
+    </nb-card-body>
+  </nb-card>
