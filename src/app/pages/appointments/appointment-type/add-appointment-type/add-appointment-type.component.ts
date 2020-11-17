@@ -75,6 +75,8 @@ export class AddAppointmentTypeComponent implements OnInit {
     
       }
     
-
+      onSubmit(){
+        console.log(this.addAppTypeForm.value);  
+      }
       
 }
