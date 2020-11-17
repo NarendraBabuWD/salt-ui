@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpService } from './../../../../@core/services/http.service';
 import { ToastrService } from '../../../../@theme/components/toaster/toastr.service';
+import { ConfirmDeleteComponent } from '../../../../@theme/components/modal/confirm-delete/confirm-delete.component';
 import { EnumsService } from '../../../../@core/data/enums.service';
 import { Location } from '@angular/common';
+import { NbDialogService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-add-staff',
@@ -15,6 +17,7 @@ export class AddStaffComponent implements OnInit, OnDestroy {
   public staffForm: FormGroup;
   subscription: any;
   myFormValueChanges$: any;
+  staffDetails: any;
 
   editMode = false;
   staffId: any;
@@ -29,8 +32,11 @@ export class AddStaffComponent implements OnInit, OnDestroy {
   locname:any = "";
   locationId:any = 0;
   organizationId: string;
+  staffLocations: any;
+
 
   constructor(private router: Router, private route: ActivatedRoute, private service: HttpService,
+    private dialogService: NbDialogService,
     private toastr: ToastrService, private fb: FormBuilder,private enums: EnumsService,private location: Location) {
       this.preferences = this.enums.preferences;
       this.orgName = this.enums.orgName;
@@ -52,6 +58,13 @@ export class AddStaffComponent implements OnInit, OnDestroy {
         this.editMode = true;
          this.loadStaffDetails(this.staffId);
       }
+      this.subscription = this.route.queryParams.subscribe(params => {
+        if (params && params.id) {
+          this.staffId = params.id;
+          this.enums.staffId = this.staffId;
+          this.loadStaffDetailsgrid(this.staffId);
+        }
+      });
 
       this.staffForm = this.fb.group({
         organisation_location_id:[''],
@@ -122,6 +135,7 @@ export class AddStaffComponent implements OnInit, OnDestroy {
   }
 
   setDetails(data: any) {
+    debugger
     if (data) {
       this.staffId = data.id;
       this.f.organisation_location_id.setValue(this.locationId)
@@ -193,10 +207,110 @@ export class AddStaffComponent implements OnInit, OnDestroy {
     }
 }
 
-  createStaffLocation(){
-      this.router.navigate(['/pages/staff/location'], { queryParams: { id: this.locationId } });
+  createStaffLocations(){
+       if(sessionStorage.getItem("organizationTypeId") === '1'){
+      this.router.navigate(['/owner/staff/location'], { queryParams: { staffId: this.staffId } });
+      } else if(sessionStorage.getItem("organizationTypeId") === '2'){
+        this.router.navigate(['/practice/staff/location'], { queryParams: { staffId: this.staffId } });
+      }else if(sessionStorage.getItem("organizationTypeId") === '3'){
+        this.router.navigate(['/allied/staff/location'], { queryParams: { staffId: this.staffId } });
+    }
   }
 
+
+  loadStaffDetailsgrid(id: string) {
+    let staffId = {  id: id};
+        this.service.post('Staff/getstaff', staffId, null).subscribe((response) => {
+        this.loading = true;
+        this.staffDetails = response;
+        this.staffLocations = response.getlocs;
+        // this.dataGridSource.load(this.staffLocations);
+         this.loading = false;
+        }, (error) => {
+          this.loading = false;
+          this.toastr.error(error.error);
+        });
+  }
+
+
+  createStaffLocation(){
+    // this.router.navigate(['/pages/staff/location'], { queryParams: { id: this.locationId } });
+    if(sessionStorage.getItem("organizationTypeId") === '1'){
+      this.router.navigate(['/owner/staff/location'], { queryParams: { staffId: this.staffId } });
+      } else if(sessionStorage.getItem("organizationTypeId") === '2'){
+        this.router.navigate(['/practice/staff/location'], { queryParams: { staffId: this.staffId } });
+      }else if(sessionStorage.getItem("organizationTypeId") === '3'){
+        this.router.navigate(['/allied/staff/location'], { queryParams: { staffId: this.staffId } });
+    }
+  }
+
+  
+  deactivateStaffLocation(event: any){
+    this.confirmDeactivate(event.data);
+}
+
+DeleteStaff(data:any){
+  this.dialogService.open(ConfirmDeleteComponent, { hasBackdrop: true, 
+    context: {title:'Delete',data:'Are you sure , you want to delete the Location?',} })
+  .onClose.subscribe((res) => {
+    if (res == 'delete') {
+      let delByLocId = {  id: data.organisation_location_id};
+      this.service.post('Staff/deleteStaffLocation', delByLocId, null).subscribe(
+        (response) => {
+          // this.dataGridSource.remove(data);
+          
+          this.toastr.success("Location Deleted Successfully");
+        },
+        (error) => {
+          this.toastr.error(error.error);
+        });
+    }
+  });
+
+}
+
+confirmDeactivate(data: any) {
+  if (data.status == "1") {
+    this.dialogService.open(ConfirmDeleteComponent, { hasBackdrop: true,
+      context:{ title:'Deactivate', data:'Are you sure, You want to deactivate this staff location?'} })
+      .onClose.subscribe((res) => {
+        if (res == 'delete') {
+          let body={ id:data.organisation_location_id,
+               updated_by:1
+          }
+          this.service.post('Staff/deactivatestafflocation', body,null).subscribe(
+            (response) => {
+              const index = this.staffLocations.findIndex(obj => obj.staff_location_id = data.staff_location_id);
+              this.staffLocations[index].status = "2";
+              // this.dataGridSource.load(this.staffLocations);
+              this.toastr.success('Staff location Deactivated successfully');
+            },
+            (error) => {
+              this.toastr.error(error.error);
+            });
+        }
+      });
+  } else {
+    this.dialogService.open(ConfirmDeleteComponent, { hasBackdrop: false,
+      context:{ title:'Activate', data:'Are you sure, You want to activate this staff location?'} })
+      .onClose.subscribe((res) => {
+        if (res == 'delete') {
+          let body={ id:data.organisation_location_id ,
+            updated_by:1}
+          this.service.post('Staff/activatestafflocation', body,null).subscribe(
+            (response) => {
+              const index = this.staffLocations.findIndex(obj => obj.staff_location_id = data.staff_location_id);
+              this.staffLocations[index].status = "1";
+              // this.dataGridSource.load(this.staffLocations);
+              this.toastr.success('Staff location Deactivated successfully');
+            },
+            (error) => {
+              this.toastr.error(error.error);
+            });
+        }
+      });
+  }
+}
   ngOnDestroy() {
    this.subscription.unsubscribe();
   }

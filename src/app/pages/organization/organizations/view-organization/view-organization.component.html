@@ -54,7 +54,7 @@
                    aria-haspopup="true" aria-expanded="false">
                 </button> -->
 
-                <button nbButton status="primary" (click)="createLocation()">Add Location</button>
+                <!-- <button nbButton status="primary" (click)="createLocation()">Add Location</button> -->
 
                 <!-- <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                   <li class="dropdown-item" (click)="delete()">Delete </li>
@@ -78,7 +78,7 @@
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
           <!-- <th scope="col">City</th> -->
-          <th scope="col" style="text-align: center; vertical-align: middle;">Action</th>
+          <!-- <th scope="col" style="text-align: center; vertical-align: middle;">Action</th> -->
           </tr>
           </thead>
           <tbody>
@@ -86,10 +86,10 @@
           <td >{{item2.locname}}</td>
           <td >{{item2.locemail}}</td>
           <td >{{item2.locphone}}</td>
-          <td style="text-align: center; vertical-align: middle;">
+          <!-- <td style="text-align: center; vertical-align: middle;">
           <button class="btn btn-sm btn-primary" (click)="editLocation(item2)"><i class="nb-compose" title="Update"></i></button>
           &nbsp;
-          <button class="btn btn-sm btn-warning" (click)="view(item2)"><i class="nb-compose" title="View"></i></button>
+          <button class="btn btn-sm btn-warning" (click)="view(item2)"><i class="fa fa-eye" title="View"></i></button>
           &nbsp;
           <button *ngIf="locations.length > 1" class="btn btn-sm btn-danger" (click)="confirmDelete(item2)"><i class="nb-trash" title="Delete"></i></button>
           &nbsp;
@@ -97,7 +97,7 @@
           <input type="checkbox" [checked]="item2.locstatus == 1" (change)="changeStatus(item2,$event)">
           <span class="slider round"></span>
           </label>
-          </td>
+          </td> -->
           </tr>
           
     </tbody>
