@@ -1,0 +1,195 @@
+<nb-card>
+    <nb-card-header>
+      <div class="row">
+        <div class="col-8">
+          
+ 
+          <span>Edit</span>
+        </div>
+        <div class="label col-4 text-right" style="cursor: pointer">
+          <i class="ion-ios-arrow-back back"  > Back</i>
+        </div>
+      </div>
+    </nb-card-header>
+<nb-card-body   nbSpinnerStatus="danger" nbSpinnerSize="medium">
+<form class="form-horizontal" id="service-details" novalidate="novalidate">
+    <div class="row">
+        <div class="column">
+            <h2>Details</h2>
+            <input type="hidden" id="service-id" name="service-id" value="">
+            <table class="table margin-none">
+                <tbody>
+                    <tr>
+                        <th class="cell-fit">Codes:</th>
+                        <td class="cell-fill">
+                            <div class="clear-after">
+                                <div class="input-group input-medium float-left margin-right-xsmall">
+                                    <label class="input-prefix" for="code-service"><i class="icon icon-inverse icon-barcode"></i></label>
+                                    <input class="input-text" type="text" placeholder="Service Code" value="" name="code-service" id="code-service">
+                                    <label class="input-suffix" for="code-service"><strong class="text-danger">*</strong></label>
+                                </div>
+                                <div class="input-group input-medium float-left">
+                                    <label class="input-prefix" for="code-accounting"><i class="icon icon-inverse icon-calculator"></i></label>
+                                    <input class="input-text" type="text" placeholder="Accounting Code" value="" name="code-accounting" id="code-accounting">
+                                </div>
+                            </div>
+                            <p class="margin-bottom-none text-help">Service code shown on invoices.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="cell-fit">Name:</th>
+                        <td class="cell-fill">
+                            <div class="input-group input-xxxlarge">
+                                <input class="input-text" type="text" placeholder="Name" value="" name="service-name" id="service-name">
+                                <label class="input-suffix" for="service-name"><strong class="text-danger">*</strong></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="cell-fit">Description:</th>
+                        <td class="cell-fill">
+                            <input class="input-text input-xxxlarge" type="text" placeholder="Description" value="" name="service-description" id="service-description">
+                            <p class="margin-bottom-none text-help">Description shown on invoices.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="cell-fit">Category:</th>
+                        <td class="cell-fill">
+                            <div class="clear-after">
+                                <div class="input-group input-xxxlarge">
+                                    <label class="input-prefix" for="service-category"><i class="icon icon-inverse icon-label"></i></label>
+                                    <select class="input-select plugin-chosen" data-placeholder="Select category..." name="service-category" id="service-category" style="display: none;">
+                                        <option value=""></option>
+                                                                                                                                            <option value="General">General</option>
+                                                                                                                                    <option value="new-category">Create a new Category</option>
+                                    </select><div class="chosen-container chosen-container-single input-select plugin-chosen chosen-container-single-nosearch" style="width: 262px;" title="" id="service_category_chosen"><a class="chosen-single chosen-default" tabindex="-1"><span>Select category...</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div><ul class="chosen-results"></ul></div></div>
+                                    <label class="input-suffix" for="service-category"><strong class="text-danger">*</strong></label>
+                                </div>
+                            </div>
+                            <div class="clear-after margin-top-xsmall" id="category-new" style="display: none;">
+                                <div class="input-group input-xxxlarge">
+                                    <label class="input-prefix" for="category-title"><i class="icon icon-inverse icon-pencil"></i></label>
+                                    <input class="input-text" type="text" placeholder="Category Title" value="" name="category-title" id="category-title">
+                                    <label class="input-suffix" for="category-title"><strong class="text-danger">*</strong></label>
+                                </div>
+                            </div>
+                            <p class="margin-bottom-none text-help">e.g. Physiotherapy, Psychology, Naturopathy, etc.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="cell-fit">Colour:</th>
+                        <td class="cell-fill">
+                            <div class="clear-after">
+                                <div class="input-group input-xxxlarge">
+                                    <label class="input-prefix" for="service-colour"><i class="icon icon-inverse icon-paintbrush"></i></label>
+                                    <select class="input-select plugin-chosen" data-placeholder="Select colour..." name="service-colour" id="service-colour" style="display: none;">
+                                                                                                                                    <option value="#DA347D" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogI0RBMzQ3RDsiIC8+PC9zdmc+">Watermelon</option>
+                                                                                        <option value="#BF3DBF" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogI0JGM0RCRjsiIC8+PC9zdmc+">Fuchsia</option>
+                                                                                        <option value="#8C35BC" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzhDMzVCQzsiIC8+PC9zdmc+">Grape</option>
+                                                                                        <option value="#582DB9" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzU4MkRCOTsiIC8+PC9zdmc+">Purple</option>
+                                                                                        <option value="#343BBC" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzM0M0JCQzsiIC8+PC9zdmc+">Blueberry</option>
+                                                                                        <option value="#0F49BF" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzBGNDlCRjsiIC8+PC9zdmc+">Blue</option>
+                                                                                        <option value="#0868BF" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzA4NjhCRjsiIC8+PC9zdmc+">Denim</option>
+                                                                                        <option value="#0087BF" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzAwODdCRjsiIC8+PC9zdmc+">Cyan</option>
+                                                                                        <option value="#128A72" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzEyOEE3MjsiIC8+PC9zdmc+">Mint</option>
+                                                                                        <option value="#248C24" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzI0OEMyNDsiIC8+PC9zdmc+">Green</option>
+                                                                                        <option value="#8B8C13" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzhCOEMxMzsiIC8+PC9zdmc+">Olive</option>
+                                                                                        <option value="#F18B02" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogI0YxOEIwMjsiIC8+PC9zdmc+">Yellow</option>
+                                                                                        <option value="#F16B02" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogI0YxNkIwMjsiIC8+PC9zdmc+">Mango</option>
+                                                                                        <option value="#F14B02" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogI0YxNEIwMjsiIC8+PC9zdmc+">Orange</option>
+                                                                                        <option value="#F33B1E" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogI0YzM0IxRTsiIC8+PC9zdmc+">Pomegranate</option>
+                                                                                        <option value="#F52A3A" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogI0Y1MkEzQTsiIC8+PC9zdmc+">Red</option>
+                                                                                        <option value="#777777" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzc3Nzc3NzsiIC8+PC9zdmc+">Concrete</option>
+                                                                                        <option value="#555555" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzU1NTU1NTsiIC8+PC9zdmc+">Grey</option>
+                                                                                        <option value="#333333" data-img-src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBzdHlsZT0iZmlsbDogIzMzMzMzMzsiIC8+PC9zdmc+">Charcoal</option>
+                                                                                    <option selected="selected" value="new-colour">Set a custom Colour</option>
+                                    </select><div class="chosen-container chosen-container-single input-select plugin-chosen" style="width: 262px;" title="" id="service_colour_chosen"><a class="chosen-single" tabindex="-1"><span>Set a custom Colour</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+                                    <label class="input-suffix" for="service-colour"><strong class="text-danger">*</strong></label>
+                                </div>
+                            </div>
+                            <div class="clear-after margin-top-xsmall" id="colour-new">
+                                <div class="input-group input-xxxlarge">
+                                    <label class="input-prefix" for="colour-value"><i class="icon icon-inverse icon-pencil"></i></label>
+                                    <input class="input-text" type="color" placeholder="Hex Code (#000000)" value="" name="colour-value" id="colour-value">
+                                    <label class="input-suffix" for="colour-value"><strong class="text-danger">*</strong></label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="cell-fit">Duration:</th>
+                        <td class="cell-fill">
+                            <div class="clear-after">
+                                <div class="input-group input-medium float-left">
+                                    <input class="input-text" type="number" placeholder="0" min="0" step="5" value="" name="service-duration" id="service-duration">
+                                    <label class="input-suffix" for="service-duration">Minutes <strong class="text-danger">*</strong></label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="cell-fit">Price:</th>
+                        <td class="cell-fill">
+                            <div class="clear-after">
+                                                                    <div class="input-group input-medium float-left margin-right-xsmall">
+                                    <label class="input-prefix" for="service-price">$</label>
+                                    <input class="input-text" type="number" placeholder="0.00" min="0" step="0.01" value="0" name="service-price" id="service-price">
+                                    <label class="input-suffix" for="service-price"><strong class="text-danger">*</strong></label>
+                                </div>
+                                <label class="input-label input-medium float-left"><input type="checkbox" value="tax" name="service-tax" id="service-tax"> inc. GST</label>
+                            </div>
+                            <input type="hidden" id="price-tax" name="price-tax" value="">
+                            <input type="hidden" id="price-total" name="price-total" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="cell-fit">Options:</th>
+                        <td class="cell-fill">
+                            <label class="input-label input-medium"><input type="checkbox" value="redeem" name="option[]" id="option-redeem"> Allow Redemptions</label>
+                            <p class="margin-bottom-none text-help">Clients can redeem passes for this service.</p>
+                                                        </td>
+                    </tr>
+                                                <tr>
+                            <th class="cell-fit">Providers:</th>
+                            <td class="cell-fill">
+                                <input type="hidden" id="has-providers" name="has-providers" value="1">
+                                
+                            <div class="input-group"><div class="input-group margin-bottom-xxxsmall input-xxxlarge"><label class="input-prefix" for="providers-list-names"><i class="icon icon-inverse icon-group"></i></label><textarea class="input-textarea" style="height: 28px;" name="providers-list-names" id="providers-list-names" placeholder="Select provider(s)..." readonly="readonly" data-dropdown="providers-list-dropdown" data-value=""></textarea><input class="input-text" type="hidden" name="providers-list" id="providers-list" value="" readonly="readonly" data-value=""></div><div class="hidden"><ul id="providers-list-dropdown"><li class="background-success" id="providers-list-custom-0" onclick="nookal.functions.pickerSubFunction('providers-list', 0, 'custom', 1, 'Providers');"><div class="text-nowrap overflow-ellipsis"><i class="icon icon-group"></i> All Providers</div></li><li id="providers-list-custom-clear" onclick="nookal.functions.pickerSubFunction('providers-list', -1, 'custom', 1, 'Providers');"><div class="text-nowrap overflow-ellipsis"><i class="icon icon-inverse icon-denied"></i> Clear Selection</div></li><li id="providers-list-custom-1" onclick="nookal.functions.pickerSubFunction('providers-list', '1', 'custom', 1, 'Providers');" data-id="1" data-name="Tracey Caroline"><div class="text-nowrap overflow-ellipsis"><i class="icon icon-inverse icon-point"></i> Tracey Caroline</div></li></ul></div></div></td>
+                        </tr>
+                                        </tbody>
+            </table>
+                        </div>
+        <div class="column">
+            <h2>Availability</h2>
+            <table class="table margin-none">
+                <tbody>
+                    <tr>
+                        <th class="cell-fit">Locations:</th>
+                        <td class="cell-fill">
+                            <div class="clear-after">
+                                <label class="input-label input-medium float-left margin-right-xsmall"><input type="radio" checked="checked" value="all" name="locations" id="locations-all"> All Locations</label>
+                                <label class="input-label input-medium float-left"><input type="radio" value="selection" name="locations" id="locations-selection"> Selection</label>
+                            </div>
+                            <div id="locations-list" class="box-border margin-top-xsmall" style="max-height: 125px; overflow-y: scroll; display: none;">
+                                <table class="table table-condensed table-selectable table-striped margin-top-none" data-id="location" data-multiple="multiple" data-count="0">
+                                    <tbody>
+                                                                                                                                            <tr data-value="1" data-location-id="1" data-checked=""><td class="cell-fit"><input type="checkbox" name="location[]" value="1" rel="location" class="selectable-input" id="location-1" onchange="$(this).closest('.table-selectable').attr('data-count', $(this).closest('.table-selectable').find('tbody').find('input:checked').length); "></td>
+                                                    <td class="cell-fill">Tracey's Practice</td>
+                                                </tr>
+                                                                                                <tr data-value="2" data-location-id="2" data-checked=""><td class="cell-fit"><input type="checkbox" name="location[]" value="2" rel="location" class="selectable-input" id="location-2" onchange="$(this).closest('.table-selectable').attr('data-count', $(this).closest('.table-selectable').find('tbody').find('input:checked').length); "></td>
+                                                    <td class="cell-fill">Location 2</td>
+                                                </tr>
+                                                                                                                                </tbody>
+                                </table>
+                            </div>
+                            <p class="margin-bottom-none text-help">Location(s) where this service is available.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+                
+                
+                        </div>
+    </div>
+</form>
+</nb-card-body>

@@ -101,6 +101,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
     hidden: sessionStorage.getItem("organizationTypeId") == '1' || sessionStorage.getItem("organizationTypeId") == '3'
   },
   {
+    title:'Appointments',
+    icon:'home-outline',
+    link:'/pages/appointments/all',
+    hidden: sessionStorage.getItem("organizationTypeId") == '1' || sessionStorage.getItem("organizationTypeId") == '3'
+
+  },
+  {
     title: 'Allied Health',
     icon: 'edit-2-outline',
     hidden: sessionStorage.getItem("organizationTypeId") == '1' || sessionStorage.getItem("organizationTypeId") == '3',

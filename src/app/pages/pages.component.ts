@@ -56,6 +56,11 @@ export class PagesComponent {
             link: '/owner/roles/all'
           },
           {
+            title:'Appointments',
+            icon:'nb-person',
+            link:'/owner/appointments/all',
+          },
+          {
             title: 'Staff',
             icon: 'person-outline',
             link: '/owner/staff/all'

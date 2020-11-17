@@ -29,6 +29,10 @@ const routes: Routes = [{
       loadChildren: './roles/roles.module#RolesModule',
     },
     {
+      path:'appointments',
+      loadChildren:'./appointments/appointments.module#AppointmentsModule'
+    },
+    {
       path: 'organization',
       loadChildren: './organization/organization.module#OrganizationModule',
     },
