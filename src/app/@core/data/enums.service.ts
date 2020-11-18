@@ -43,6 +43,14 @@ export class EnumsService {
         //{ id: 5, name: 'Patients'},
     ];
 
+    orgTypesAddOrg: any = [
+      // { id: 1, name: 'Owner'},
+      { id: 2, name: 'Practice' },
+      { id: 3, name: 'Allied'},
+      { id: 4, name: 'Specialist'},
+      //{ id: 5, name: 'Patients'},
+  ];
+
     modules: any = [
       { id: 1, name: 'Roles', status: false},
       { id: 2, name: 'Users', status: false},

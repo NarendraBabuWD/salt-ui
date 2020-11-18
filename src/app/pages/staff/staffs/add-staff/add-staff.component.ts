@@ -78,9 +78,9 @@ export class AddStaffComponent implements OnInit, OnDestroy {
         postcode: ['',[Validators.minLength]],
         city: [''],
         state: ['', [Validators.required]],
-        password: ['', [Validators.required]],
+        password: ['',],
         preference: ['', [Validators.required]],
-        role_id: ['', [Validators.required]],
+        role_id: [''],
       });
     });
   }
@@ -135,7 +135,6 @@ export class AddStaffComponent implements OnInit, OnDestroy {
   }
 
   setDetails(data: any) {
-    debugger
     if (data) {
       this.staffId = data.id;
       this.f.organisation_location_id.setValue(this.locationId)
@@ -185,6 +184,8 @@ export class AddStaffComponent implements OnInit, OnDestroy {
           });
       } else {
         formData.id = this.staffId;
+        // delete formData.role_id;
+        delete formData['role_id'];
         postData = {...formData,status: 1, updated_by: 1}
         this.service.postJson('Staff/updatestaff' , postData).subscribe(
           (response) => {
@@ -260,6 +261,7 @@ DeleteStaff(data:any){
           // this.dataGridSource.remove(data);
           
           this.toastr.success("Location Deleted Successfully");
+          this.loadStaffDetails(this.staffId);
         },
         (error) => {
           this.toastr.error(error.error);

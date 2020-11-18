@@ -75,11 +75,14 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="mobile" class="label">Mobile</label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">0</span>
                 <input nbInput fullWidth type="text" [required]="true" class="form-control"
                   id="mobile" placeholder="Mobile" name="mobile" maxlength="11" minlength="10"
                   formControlName="mobile" NumbersOnly="true"/>
                   <small class="text-danger" *ngIf="f.mobile.hasError('required') && f.mobile.touched">Please enter Contact Person.</small>
             <small class="text-danger" *ngIf="f.mobile.hasError('minlength')">Please enter minimum 10 digit Mobile number.</small>
+            </div>
             </div>
 
             <div class="form-group col-md-4">
@@ -130,28 +133,31 @@
         </div>
           
         <div class="row">
-          <!-- <div class="form-group col-md-4">
+         
+          <div class="form-group col-md-4" *ngIf="!editMode">
+              <label for="password" class="label"  *ngIf="!editMode">Password</label>
+            <input  *ngIf="!editMode" nbInput fullWidth type="password" [required]="true" class="form-control" autocomplete="new-password"
+              id="password" placeholder="password" name="password" maxlength="60" 
+              formControlName="password"/>
+              <small class="text-danger" *ngIf="f.password.hasError('required') && f.password.touched">Please enter Password.</small>
+          </div>
+          <div class="form-group col-md-4" *ngIf="!editMode">
             <label for="location" class="label">Location</label>
             <ng-select [clearable]="false" appendTo="body" placeholder="Choose Location" formControlName="organisation_location_id"
              [items]="locations" bindLabel="locname" bindValue="organisation_location_id">
            </ng-select>
-              <small class="text-danger" *ngIf="f.organisation_location_id.hasError('required')">Please enter Location.</small> -->
-            <!-- <label for="password" class="label">Password</label>
-            <input nbInput fullWidth type="password" [required]="true" class="form-control" autocomplete="new-password"
-              id="password" placeholder="password" name="password" maxlength="60" 
-              formControlName="password"/>
-              <small class="text-danger" *ngIf="f.password.hasError('required') && f.password.touched">Please enter Password.</small> -->
-          <!-- </div> -->
-          <!-- <div class="form-group col-md-4">
-            <label for="role" class="label">Role</label> -->
+              <small class="text-danger" *ngIf="f.organisation_location_id.hasError('required')">Please enter Location.</small>
+          </div>
+          <div class="form-group col-md-4" *ngIf="!editMode">
+            <label for="role" class="label">Role</label>
             <!-- <nb-select placeholder="Choose Role" fullWidth  formControlName="role">
                 <nb-option *ngFor="let data of roles" value={{data.id}}>{{data.name}}</nb-option>
             </nb-select> -->
-            <!-- <ng-select [clearable]="false" appendTo="body" placeholder="Choose Role" formControlName="role_id"
+            <ng-select [clearable]="false" appendTo="body" placeholder="Choose Role" formControlName="role_id"
                [items]="roles" bindLabel="roleName" bindValue="roleId">
             </ng-select>
             <small class="text-danger" *ngIf="f.role_id.hasError('required')">Role is required.</small>
-          </div> -->
+          </div>
           <div class="form-group col-md-4">
             <label for="preference" class="label">Preferences</label>
               <!-- <nb-select placeholder="Choose preference" fullWidth  formControlName="preferences">
@@ -162,7 +168,6 @@
               </ng-select>
               <small class="text-danger" *ngIf="f.preference.hasError('required') && f.preference.touched">Please enter postcode.</small>
           </div>
-          
         </div>   
         <div class="row" *ngIf="!editMode">
           <!-- <div class="form-group col-md-4">

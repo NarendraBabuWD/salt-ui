@@ -29,6 +29,7 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
   errorMsg:any;
   orgemail:any;
   selectedOrgType: any;
+  
   // maxMsglength: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: HttpService,
@@ -36,7 +37,7 @@ export class AddOrganizationComponent implements OnInit, OnDestroy {
       this.states = this.enums.state;
       this.ttl=this.enums.titles;
       this.timeZones = this.enums.timeZone;
-      this.orgTypes = this.enums.orgTypes;
+      this.orgTypes = this.enums.orgTypesAddOrg;
   }
 
   ngOnInit() {
